@@ -1,0 +1,12 @@
+{
+  "name": "octo-suite",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "repository": "https://github.com/Octo-Suite/octo-suite.git",
+  "author": "Arthur Santos <silva.arthur@academico.ifpb.edu.br>",
+  "license": "MIT"
+}
