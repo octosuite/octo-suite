@@ -30,7 +30,12 @@ export const useActiveItem = (item: string): [boolean, () => void] => {
   const { activeItem, setActiveItem } = useContext(ActivityBarContext)
 
   const isActive = useMemo(() => activeItem === item, [activeItem, item])
-  const setAsActive = useCallback(() => setActiveItem(item), [item])
+  
+  const setAsActive = useCallback(() => {
+    if (!isActive) {
+      setActiveItem(item)
+    }
+  }, [item, isActive])
 
   return [isActive, setAsActive]
 }

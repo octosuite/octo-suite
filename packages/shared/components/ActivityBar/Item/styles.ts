@@ -11,8 +11,8 @@ export const Wrapper = styled.div<WrapperProps>`
   align-items: center;
   justify-content: center;
 
-  border-left: 2px solid transparent;
-  border-right: 2px solid transparent;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 
   color: rgba(255, 255, 255, 0.4);
   height: 48px;
