@@ -1,0 +1,16 @@
+{
+  "name": "@shared/components",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-icons": "^3.11.0",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.51",
+    "@types/styled-components": "^5.1.4"
+  }
+}
