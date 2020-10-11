@@ -1,0 +1,13 @@
+{
+  "name": "@shared/styles",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.4"
+  }
+}
