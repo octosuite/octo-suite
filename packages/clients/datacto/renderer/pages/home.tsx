@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { MdInbox, MdSearch } from 'react-icons/md'
 
-import { ActivityBar, Layout, Content } from '@shared/components';
+import { ActivityBar, Layout, Content, Sidebar, TabBar, StatusBar } from '@shared/components';
 
 const Home = () => {
   return (
@@ -18,9 +18,13 @@ const Home = () => {
           <ActivityBar.Item name="search" icon={<MdSearch />} />
         </ActivityBar>
 
-        <Content>
-          <h1>Home</h1>
+        <Content hasSidebar>
+          <Sidebar title="Database" />
+
+          <TabBar />
         </Content>
+
+        <StatusBar />
       </Layout>
     </React.Fragment>
   );

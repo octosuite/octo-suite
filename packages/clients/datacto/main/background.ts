@@ -21,6 +21,8 @@ if (isProd) {
     alwaysOnTop: !isProd,
   });
 
+  mainWindow.removeMenu()
+
   if (isProd) {
     await mainWindow.loadURL('app://./home.html');
   } else {
