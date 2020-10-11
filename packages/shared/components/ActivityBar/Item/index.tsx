@@ -4,11 +4,11 @@ import { useActiveItem } from '../context'
 import { Wrapper } from './styles';
 import { ActivityBarItemProps } from './types';
 
-const ActivityBarItem: React.VFC<ActivityBarItemProps> = ({ name, icon }) => {
+const ActivityBarItem: React.VFC<ActivityBarItemProps> = ({ name, icon, onClick, ...rest }) => {
   const [isActive, setAsActive] = useActiveItem(name)
 
   return (
-    <Wrapper onClick={setAsActive} isActive={isActive}>
+    <Wrapper onClick={onClick || setAsActive} isActive={isActive} {...rest}>
       {icon}
     </Wrapper>
   );

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
-export interface ActivityBarItemProps {
+export interface ActivityBarItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name: string
   icon: string | React.ReactNode
+  hideIndicator?: boolean
 }

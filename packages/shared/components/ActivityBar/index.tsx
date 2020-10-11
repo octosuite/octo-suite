@@ -18,13 +18,21 @@ const ActivityBar: React.FC<ActivityBarProps> & {
         </Container>
 
         {!exludeSettings && (
-          <ActivityBarItem name="settings" icon={<MdSettings />} />
+          <ActivityBarItem
+            name="settings"
+            icon={<MdSettings />}
+            onClick={() => {}}
+            hideIndicator
+          />
         )}
       </Wrapper>
-    </ActivityBarContextProvider>);
+    </ActivityBarContextProvider>
+  );
 }
 
 ActivityBar.Item = ActivityBarItem
+
+export const ACTIVITY_BAR_WIDTH = 48
 
 export * from './Item'
 export * from './types'

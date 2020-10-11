@@ -2,14 +2,16 @@ import styled, { css } from 'styled-components';
 
 interface WrapperProps {
   isActive: boolean
+  hideIndicator?: boolean
 }
 
-export const Wrapper = styled.div<WrapperProps>`
-  cursor: pointer;
-
+export const Wrapper = styled.button<WrapperProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: none;
+  border: none;
 
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
@@ -23,15 +25,17 @@ export const Wrapper = styled.div<WrapperProps>`
     width: 24px;  
   }
 
-  ${({ isActive }) => isActive && css`
-    border-left-color: #fff;
+  ${({ isActive, hideIndicator }) => isActive && css`
+    border-left-color: ${hideIndicator ? 'transparent' : '#fff'} !important;
     color: rgba(255, 255, 255, 1);
   `}
 
-  :focus {
-    border-left-color: #0E639C;
-    color: rgba(255, 255, 255, 1);
-  }
+  ${({ hideIndicator }) => css`
+    :focus {
+      border-left-color: ${hideIndicator ? 'transparent' : '#0E639C'};
+      color: rgba(255, 255, 255, 1);
+    }
+  `}
 
   :hover {
     color: rgba(255, 255, 255, 1);
