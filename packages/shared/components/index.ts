@@ -1,3 +1,7 @@
 export * from './ActivityBar'
 export * from './Content'
 export * from './Layout'
+export * from './Pager'
+export * from './Sidebar'
+export * from './StatusBar'
+export * from './TabBar'
