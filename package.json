@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/clients/*"
     ]
   },
   "repository": "https://github.com/Octo-Suite/octo-suite.git",

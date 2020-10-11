@@ -1,0 +1,13 @@
+appId: io.octosuite.datacto
+productName: Datacto
+copyright: Copyright © 2020 Octo Suite
+electronVersion: 10.1.1
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
