@@ -4,7 +4,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/clients/*"
+      "packages/clients/*",
+      "packages/shared/*"
     ]
   },
   "repository": "https://github.com/Octo-Suite/octo-suite.git",

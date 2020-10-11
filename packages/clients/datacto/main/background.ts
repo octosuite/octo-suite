@@ -17,6 +17,8 @@ if (isProd) {
     title: 'Datacto',
     width: 1000,
     height: 600,
+    backgroundColor: '#1c1e1f',
+    alwaysOnTop: !isProd,
   });
 
   if (isProd) {
