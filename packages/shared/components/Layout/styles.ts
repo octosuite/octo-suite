@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { ACTIVITY_BAR_WIDTH } from '../ActivityBar';
+
+import { STATUS_BAR_HEIGHT } from '../StatusBar';
 
 /*
   ACTB -> ActivityBar
@@ -8,8 +11,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 48px calc(100vw - 48px);
-  grid-template-rows: calc(100vh - 22px) 22px;
+  grid-template-columns: ${ACTIVITY_BAR_WIDTH}px calc(100vw - ${ACTIVITY_BAR_WIDTH}px);
+  grid-template-rows: calc(100vh - ${STATUS_BAR_HEIGHT}px) ${STATUS_BAR_HEIGHT}px;
   grid-template-areas: 
     'ACTB CONT'
     'STTB STTB';
