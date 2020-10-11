@@ -1,9 +1,14 @@
 import React from 'react';
 
 import { Container } from './styles';
+import { ContentProps } from './types'
 
-const Content: React.FC = ({ children }) => {
-  return <Container>{children}</Container>;
+const Content: React.FC<ContentProps> = ({ children, hasSidebar }) => {
+  return (
+    <Container hasSidebar={hasSidebar}>
+      {children}
+    </Container>
+  );
 }
 
 export { Content }
