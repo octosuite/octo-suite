@@ -1,5 +1,6 @@
 export * from './ActivityBar'
 export * from './Button'
+export * from './Codicon'
 export * from './Content'
 export * from './Form'
 export * from './Layout'

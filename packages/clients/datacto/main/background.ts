@@ -37,7 +37,7 @@ ipcMain.on('openSourceCreator', async () => {
   const mainBounds = mainWindow.getBounds()
 
   const x = (mainBounds.x + (mainBounds.width / 2)) - 200
-  const y = (mainBounds.y + (mainBounds.height / 2)) - 200
+  const y = (mainBounds.y + (mainBounds.height / 2)) - 240
 
   const sourceCreatorWindow = createWindow('sourceCreator', {
     x,

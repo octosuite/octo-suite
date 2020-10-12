@@ -4,6 +4,8 @@ import { AppProps } from 'next/app';
 
 import { GlobalStyle } from '@shared/styles'
 
+import '@shared/components/Codicon/styles.css'
+
 export default function(props: AppProps) {
   const { Component, pageProps } = props;
 
