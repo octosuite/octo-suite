@@ -63,6 +63,10 @@ export const Label = styled.div`
   justify-content: center;
   transition: all 0.2s;
 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
   color: #fff;
   font-size: 13px;
   line-height: 15px;

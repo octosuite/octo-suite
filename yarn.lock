@@ -3072,6 +3072,11 @@ configstore@^5.0.1:
     write-file-atomic "^3.0.0"
     xdg-basedir "^4.0.0"
 
+connection-string@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/connection-string/-/connection-string-4.2.1.tgz#2b82bff2135f8402f635d3b4abb029aab1983a2a"
+  integrity sha512-ONzsBOZS5kwO0BUgOdm0wmkMddUCnduoXZamtHJWyp5vSU8OHCa+vOms+xVq1rtEVPDlsykjXKzl+H6VUwbAdA==
+
 console-browserify@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.2.0.tgz#67063cef57ceb6cf4993a2ab3a55840ae8c49336"

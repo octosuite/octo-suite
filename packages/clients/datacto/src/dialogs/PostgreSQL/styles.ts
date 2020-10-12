@@ -5,6 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
 
   padding: 16px;
+  height: 100%;
+  width: 100%;
 
   & > * + * {
     margin-top: 12px;
@@ -51,4 +53,11 @@ export const ActionsContainer = styled.div`
 
 export const Flex = styled.div`
   flex: 1;
+  margin: 0;
 `
+
+export const Observation = styled.span`
+  color: #fff;
+  opacity: 0.6;
+  font-size: 11px;
+`;

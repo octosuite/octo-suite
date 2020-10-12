@@ -36,20 +36,22 @@ let mainWindow: BrowserWindow
 ipcMain.on('openSourceCreator', async () => {
   const mainBounds = mainWindow.getBounds()
 
-  const x = (mainBounds.x + (mainBounds.width / 2)) - 250
-  const y = (mainBounds.y + (mainBounds.height / 2)) - 250
+  const x = (mainBounds.x + (mainBounds.width / 2)) - 200
+  const y = (mainBounds.y + (mainBounds.height / 2)) - 200
 
   const sourceCreatorWindow = createWindow('sourceCreator', {
-    height: 500,
-    width: 500,
     x,
     y,
+    width: 400,
+    minWidth: 370,
+    height: 480,
+    minHeight: 460,
     parent: mainWindow,
     modal: true,
     maximizable: false,
     minimizable: false,
-    resizable: false,
     show: false,
+    backgroundColor: '#1c1e1f'
   })
   
   sourceCreatorWindow.removeMenu()
