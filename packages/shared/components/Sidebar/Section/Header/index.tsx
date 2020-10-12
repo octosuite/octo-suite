@@ -11,12 +11,15 @@ const SidebarSectionHeader: React.FC = () => {
   return (
     <Wrapper onClick={() => setExpanded(old => !old)}>
       {expanded ? <MdKeyboardArrowDown /> : <MdKeyboardArrowRight />}
-      <Title>Project Name</Title>
 
-      <Container>
-        <SidebarSectionHeaderItem icon={<MdRefresh />} />
-        <SidebarSectionHeaderItem icon={<MdUnfoldMore />} />
-      </Container>
+      <Title>Sources</Title>
+
+      {expanded && (
+        <Container>
+          <SidebarSectionHeaderItem icon={<MdRefresh />} />
+          <SidebarSectionHeaderItem icon={<MdUnfoldMore />} />
+        </Container>
+      )}
     </Wrapper>
   );
 }
