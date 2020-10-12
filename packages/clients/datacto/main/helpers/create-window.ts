@@ -65,11 +65,11 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     store.set(key, state);
   };
 
-  state = ensureVisibleOnSomeDisplay(restore());
+  // state = ensureVisibleOnSomeDisplay(restore());
 
   const browserOptions: BrowserWindowConstructorOptions = {
     ...options,
-    ...state,
+    // ...state,
     webPreferences: {
       nodeIntegration: true,
       ...options.webPreferences,
