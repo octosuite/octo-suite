@@ -49,7 +49,7 @@ const PostgreSQLDialog: React.FC = () => {
       <CredentialsContainer>
         <TextInput label="Username" value={user} onChange={e => setUser(e.target.value)}  />
 
-        <TextInput label="Password" value={pass} onChange={e => setPass(e.target.value)}  />
+        <TextInput label="Password" value={pass} onChange={e => setPass(e.target.value)} />
       </CredentialsContainer>
       
       <TextInput label="Database" value={database} onChange={e => setDatabase(e.target.value)}  />

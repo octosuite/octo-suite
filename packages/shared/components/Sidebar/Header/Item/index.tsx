@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Codicon } from '@shared/components/Codicon'
+
 import { Container } from './styles';
 import { SidebarHeaderItemProps } from './types'
 
@@ -8,7 +10,7 @@ const SidebarHeaderItem: React.VFC<SidebarHeaderItemProps> = ({
 }) => {
   return (
     <Container {...rest}>
-      {icon}
+      {typeof icon === 'string' ? <Codicon name={icon} size={16} /> : icon}
     </Container>
   )
 }

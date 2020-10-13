@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 
-import { MdKeyboardArrowDown, MdKeyboardArrowRight, MdRefresh, MdUnfoldMore } from 'react-icons/md'
+import { Codicon } from '@shared/components/Codicon'
 
 import { SidebarSectionHeaderItem } from './Item'
 import { Wrapper, Container, Title } from './styles';
+import { SidebarSectionHeaderProps } from './types'
 
-const SidebarSectionHeader: React.FC = () => {
+const SidebarSectionHeader: React.FC<SidebarSectionHeaderProps> = ({
+  title, actions = []
+}) => {
   const [expanded, setExpanded] = useState(true)
 
   return (
     <Wrapper onClick={() => setExpanded(old => !old)}>
-      {expanded ? <MdKeyboardArrowDown /> : <MdKeyboardArrowRight />}
+      <Codicon name={expanded ? 'chevron-down' : 'chevron-right'} size={16} />
 
-      <Title>Sources</Title>
+      <Title>{title}</Title>
 
-      {expanded && (
-        <Container>
-          <SidebarSectionHeaderItem icon={<MdRefresh />} />
-          <SidebarSectionHeaderItem icon={<MdUnfoldMore />} />
-        </Container>
-      )}
+      <Container>
+        {expanded && actions.map((action, index) => (
+          <SidebarSectionHeaderItem key={index} {...action} />
+        ))}
+      </Container>
     </Wrapper>
   );
 }

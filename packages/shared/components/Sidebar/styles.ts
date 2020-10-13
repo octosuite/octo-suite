@@ -18,10 +18,12 @@ export const Wrapper = styled.div`
     'CONT';
 
   background: #252526;
-  border-right: 1px solid #1c1e1f;
   width: 300px;
 `;
 
 export const Container = styled.div`
   grid-area: CONT;
+
+  display: flex;
+  flex-direction: column;
 `;

@@ -8,20 +8,19 @@ export const Container = styled.div`
   background: none;
   border: 1px solid transparent;
 
-  height: 22px;
+  height: 20px;
   width: 28px;
 
-  svg {
+  i, svg {
     color: #ccc;
     height: 16px;
     width: 16px;
-    transition: all 0.2s;
+    transition: all 0.1s;
   }
 
   :active {
-    svg {
-      height: 20px;
-      width: 20px;
+    i, svg {
+      transform: scale(1.2)
     }
   }
 `;

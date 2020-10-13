@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { MdSettings } from 'react-icons/md'
-
 import { ActivityBarItem } from './Item'
 import { ActivityBarContextProvider } from './context'
 import { Wrapper, Container } from './styles';
@@ -20,7 +18,7 @@ const ActivityBar: React.FC<ActivityBarProps> & {
         {!exludeSettings && (
           <ActivityBarItem
             name="settings"
-            icon={<MdSettings />}
+            icon="settings-gear"
             onClick={() => {}}
             hideIndicator
           />

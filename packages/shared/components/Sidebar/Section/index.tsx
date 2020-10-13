@@ -1,15 +1,20 @@
 import React from 'react';
 
 import { SidebarSectionHeader } from './Header'
-import { Container } from './styles';
+import { Wrapper, Container } from './styles';
+import { SidebarSectionProps } from './types'
 
-const SidebarSection: React.FC & {
+const SidebarSection: React.FC<SidebarSectionProps> & {
   Header: typeof SidebarSectionHeader
-} = () => {
+} = ({ children, ...rest }) => {
   return (
-    <Container>
-      <SidebarSectionHeader />
-    </Container>
+    <Wrapper>
+      <SidebarSectionHeader {...rest} />
+
+      <Container>
+        {children}
+      </Container>
+    </Wrapper>
   );
 }
 

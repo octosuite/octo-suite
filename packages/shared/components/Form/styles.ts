@@ -34,7 +34,7 @@ export const InputLabel = styled.label`
   opacity: 0.5;
   font-size: 13px;
   line-height: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 `
 
 export const LabeledWrapper = styled.div`

@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Head from 'next/head';
 
 import { ipcRenderer } from 'electron'
 
-import { MdInbox, MdSearch } from 'react-icons/md'
-
 import { ActivityBar, Layout, Content, Sidebar, TabBar, StatusBar } from '@shared/components';
 
 const Home = () => {
-  useEffect(() => {
+  const handleOpenSourceCreator = useCallback(() => {
     ipcRenderer.send('openSourceCreator')
   }, [])
 
@@ -20,12 +18,17 @@ const Home = () => {
 
       <Layout>
         <ActivityBar onActiveItemChange={console.log} initialItem="database">
-          <ActivityBar.Item name="database" icon={<MdInbox />} />
-          <ActivityBar.Item name="search" icon={<MdSearch />} />
+          <ActivityBar.Item name="database" icon="database" />
         </ActivityBar>
 
         <Content hasSidebar>
-          <Sidebar title="Database" />
+          <Sidebar title="Database" actions={[{ icon: 'ellipsis' }]}>
+            <Sidebar.Section title="Sources" actions={[{ icon: 'add', onClick: handleOpenSourceCreator }, { icon: 'refresh' }, { icon: 'collapse-all' }]}>
+            </Sidebar.Section>
+
+            <Sidebar.Section title="Queries" actions={[{ icon: 'collapse-all' }]}>
+            </Sidebar.Section>
+          </Sidebar>
 
           <TabBar />
         </Content>

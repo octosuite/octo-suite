@@ -10,25 +10,13 @@ export const Wrapper = styled.button`
   color: #ccc;
   height: 22px;
 
-  .actions {
-    visibility: hidden;
-  }
-
-  & > svg {
+  i, svg {
     margin-left: 1px;
     margin-right: 2px;
-    height: 16px;
-    width: 16px;
   }
 
   :focus {
     border-color: #808080;
-  }
-
-  :hover {
-    & > .actions {
-      visibility: visible;
-    }
   }
 `;
 
@@ -37,6 +25,9 @@ export const Container = styled.div.attrs({
 })`
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  height: 22px;
 `
 
 export const Title = styled.strong`

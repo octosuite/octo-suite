@@ -50,40 +50,41 @@ ipcMain.on('openSourceCreator', async () => {
     modal: true,
     maximizable: false,
     minimizable: false,
-    show: false,
+    // show: false,
     backgroundColor: '#1c1e1f'
   })
   
   sourceCreatorWindow.removeMenu()
 
-  sourceCreatorWindow.once('ready-to-show', () => sourceCreatorWindow.show())
+  // sourceCreatorWindow.once('ready-to-show', () => sourceCreatorWindow.show())
+  // sourceCreatorWindow.webContents.openDevTools();
 
   if (isProd) {
     await sourceCreatorWindow.loadURL('app://./sources/create.html');
   } else {
     const port = process.argv[2];
     await sourceCreatorWindow.loadURL(`http://localhost:${port}/sources/create`);
-    sourceCreatorWindow.webContents.openDevTools();
   }
+  
 })
 
 app.on('window-all-closed', () => {
   app.quit();
 });
 
-// import knex from 'knex'
 
-// const conn = knex({
-//   client: 'pg',
-//   connection: {
-//     host: '127.0.0.1',
-//     port: 5432,
-//     user: 'postgres',
-//     password: 'root',
-//     database: 'postgres'
-//   }
+// import { Client } from 'pg'
+
+// const client = new Client({ 
+//   connectionString: 'postgres://postgres:roota@localhost:5432/postgres'
 // })
 
-// conn.select('*').from('pg_config').then(res => {
-//   console.log({ res })
-// })
+// try {
+//   await client.connect()
+//   console.log('connected')
+// } catch (error) {
+//   console.log('non connected')
+// } finally {
+//   await client.end()
+//   console.log('ended')
+// }

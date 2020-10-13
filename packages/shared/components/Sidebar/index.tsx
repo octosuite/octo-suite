@@ -5,17 +5,16 @@ import { SidebarSection } from './Section'
 import { Wrapper, Container } from './styles'
 import { SidebarProps } from './types'
 
-const Sidebar: React.VFC<SidebarProps> & {
+const Sidebar: React.FC<SidebarProps> & {
   Header: typeof SidebarHeader
   Section: typeof SidebarSection
-} = ({ ...rest }) => {
+} = ({ children, ...rest }) => {
   return (
     <Wrapper>
       <SidebarHeader {...rest} />
 
       <Container>
-        <SidebarSection />
-        <SidebarSection />
+        {children}
       </Container>
     </Wrapper>
   )

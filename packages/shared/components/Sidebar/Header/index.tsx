@@ -1,20 +1,18 @@
 import React from 'react';
 
-import { MdAdd, MdUnfoldLess, MdMoreHoriz } from 'react-icons/md'
-
 import { SidebarHeaderItem } from './Item'
 import { Wrapper, Container, Title } from './styles';
 import { SidebarHeaderProps } from "./types";
 
-const SidebarHeader: React.VFC<SidebarHeaderProps> = ({ title }) => {
+const SidebarHeader: React.VFC<SidebarHeaderProps> = ({ title, actions = [] }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
 
       <Container>
-        <SidebarHeaderItem icon={<MdAdd />} disabled />
-        <SidebarHeaderItem icon={<MdUnfoldLess />} />
-        <SidebarHeaderItem icon={<MdMoreHoriz />} />
+        {actions.map((action, index) => (
+          <SidebarHeaderItem key={index} {...action} />
+        ))}
       </Container>
     </Wrapper>
   );

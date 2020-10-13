@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
-export interface SidebarSectionHeaderItemProps {
+export type SidebarSectionHeaderItemProps = HTMLAttributes<HTMLDivElement> & {
   icon: string | ReactNode
 }
