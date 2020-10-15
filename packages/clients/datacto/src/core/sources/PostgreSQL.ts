@@ -1,4 +1,4 @@
-import { testPostgreSQLConnection } from '~/core/modules/PostgreSQL/action'
+import { testPostgreSQLConnection } from '~/core/modules/PostgreSQL/actions'
 
 import { SourceProvider } from '~/core/domain/SourceProvider'
 import { DatabaseData } from '~/core/domain/DatabaseData';

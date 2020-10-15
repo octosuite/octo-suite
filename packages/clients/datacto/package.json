@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "connection-string": "^4.2.1",
+    "electron-is-dev": "^1.2.0",
     "electron-serve": "^1.0.0",
     "electron-store": "^6.0.0",
     "pg": "^8.4.1",
