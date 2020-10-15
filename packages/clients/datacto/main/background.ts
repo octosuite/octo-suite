@@ -2,6 +2,8 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 
+import { registerTestPostgreSQLConnection } from '~/core/modules/PostgreSQL/register'
+
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
 if (isProd) {
@@ -68,23 +70,8 @@ ipcMain.on('openSourceCreator', async () => {
   
 })
 
+registerTestPostgreSQLConnection()
+
 app.on('window-all-closed', () => {
   app.quit();
 });
-
-
-// import { Client } from 'pg'
-
-// const client = new Client({ 
-//   connectionString: 'postgres://postgres:roota@localhost:5432/postgres'
-// })
-
-// try {
-//   await client.connect()
-//   console.log('connected')
-// } catch (error) {
-//   console.log('non connected')
-// } finally {
-//   await client.end()
-//   console.log('ended')
-// }

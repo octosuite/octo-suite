@@ -1,5 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { HostType, ConnectionString } from 'connection-string'
+
+import { PostgreSQLSource } from '~/core/sources/PostgreSQL'
 
 import { TextInput, Button } from '@shared/components'
 
@@ -13,6 +15,12 @@ const PostgreSQLDialog: React.FC = () => {
   const [pass, setPass] = useState('root')
   const [database, setDatabase] = useState('postgres')
   const [connectionURL, setConnectionURL] = useState('postgres://postgres:root@localhost:5432/postgres')
+
+  const handleTestConnection = useCallback(async () => {
+    const source = new PostgreSQLSource()
+
+    setName(await source.testConnection(connectionURL) ? 'success' : 'failure')
+  }, [connectionURL])
 
   useEffect(() => {
     const connection = new ConnectionString(connectionURL)
@@ -61,7 +69,7 @@ const PostgreSQLDialog: React.FC = () => {
       <Flex />
 
       <ActionsContainer>
-        <Button secondary>Test Connection</Button>
+        <Button onClick={handleTestConnection} secondary>Test Connection</Button>
         
         <Flex />
 
