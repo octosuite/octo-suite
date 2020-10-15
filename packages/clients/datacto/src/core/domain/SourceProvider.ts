@@ -6,6 +6,7 @@ import { TableColumnData } from "./TableColumnData";
 import { ViewData } from "./ViewData";
 
 export interface SourceProvider {
+  testConnection(connectionURL: string): Promise<boolean>
   disconnect(): Promise<void>
   getDatabases(): Promise<DatabaseData[]>
   getSchemas(database: DatabaseData): Promise<SchemaData[]>
