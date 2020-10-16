@@ -1,16 +1,26 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { HostType, ConnectionString } from 'connection-string'
+import React, { useState, useEffect, useCallback } from 'react'
 
-import { PostgreSQLSource } from '~/core/sources/PostgreSQL'
-import { closeCurrentWindow } from '~/utils/close-current-window';
+import { HostType, ConnectionString } from 'connection-string'
 
 import { TextInput, Button } from '@shared/components'
 
+import { PostgreSQLSource } from '~/core/sources/PostgreSQL'
+import { closeCurrentWindow } from '~/utils/close-current-window'
+
 import { defaultData } from './data'
-import { Container, HostContainer, CredentialsContainer, ActionsContainer, FillSpace, Observation } from './styles';
+import {
+  Container,
+  HostContainer,
+  CredentialsContainer,
+  ActionsContainer,
+  FillSpace,
+  Observation
+} from './styles'
 import { PostgreSQLSourceFormProps } from './types'
 
-const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = defaultData }) => {
+const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
+  data = defaultData
+}) => {
   const [name, setName] = useState(data.name)
   const [host, setHost] = useState(data.host)
   const [port, setPort] = useState(data.port)
@@ -23,11 +33,11 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = def
 
   const handleTestConnection = useCallback(async () => {
     const source = new PostgreSQLSource()
-    
+
     setTestingConnection(true)
-    
-    alert(await source.testConnection(connectionURL) ? 'success' : 'failure')
-    
+
+    alert((await source.testConnection(connectionURL)) ? 'success' : 'failure')
+
     setTestingConnection(false)
   }, [connectionURL])
 
@@ -38,14 +48,16 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = def
     setPort(`${connection.port || ''}`)
     setUser(connection.user)
     setPass(connection.password)
-    setDatabase(connection.path && connection.path[0] || '')
+    setDatabase((connection.path && connection.path[0]) || '')
   }, [connectionURL])
-  
+
   useEffect(() => {
     const connection = new ConnectionString()
     connection.protocol = 'postgres'
 
-    connection.hosts = [{ name: host, port: parseInt(port), type: HostType.domain  }]
+    connection.hosts = [
+      { name: host, port: parseInt(port), type: HostType.domain }
+    ]
     connection.user = user
     connection.password = pass
     connection.path = [database || '']
@@ -60,7 +72,7 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = def
         value={name}
         onChange={e => setName(e.target.value)}
       />
-      
+
       <HostContainer>
         <TextInput
           autoFocus
@@ -89,7 +101,7 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = def
           onChange={e => setPass(e.target.value)}
         />
       </CredentialsContainer>
-      
+
       <TextInput
         label="Database"
         value={database}
@@ -116,14 +128,16 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({ data = def
         >
           Test Connection
         </Button>
-        
+
         <FillSpace />
 
-        <Button onClick={closeCurrentWindow} secondary>Cancel</Button>
+        <Button onClick={closeCurrentWindow} secondary>
+          Cancel
+        </Button>
         <Button>Create Source</Button>
       </ActionsContainer>
     </Container>
-  );
+  )
 }
 
 export { PostgreSQLSourceForm }

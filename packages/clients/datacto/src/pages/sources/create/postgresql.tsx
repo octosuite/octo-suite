@@ -1,5 +1,6 @@
-import React from 'react';
-import Head from 'next/head';
+import React from 'react'
+
+import Head from 'next/head'
 
 import { PostgreSQLSourceForm } from '~/components/Forms/PostgreSQLSource'
 
@@ -12,7 +13,7 @@ const PorgreSQLSourceCreator: React.FC = () => {
 
       <PostgreSQLSourceForm />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default PorgreSQLSourceCreator;
+export default PorgreSQLSourceCreator

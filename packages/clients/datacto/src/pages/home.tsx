@@ -1,9 +1,17 @@
-import React from 'react';
-import Head from 'next/head';
+import React from 'react'
+
+import Head from 'next/head'
+
+import {
+  ActivityBar,
+  Layout,
+  Content,
+  Sidebar,
+  TabBar,
+  StatusBar
+} from '@shared/components'
 
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
-
-import { ActivityBar, Layout, Content, Sidebar, TabBar, StatusBar } from '@shared/components';
 
 const Home = () => {
   return (
@@ -19,11 +27,19 @@ const Home = () => {
 
         <Content hasSidebar>
           <Sidebar title="Database" actions={[{ icon: 'ellipsis' }]}>
-            <Sidebar.Section title="Sources" actions={[{ icon: 'add', onClick: openNewPostgreSQLDataSource }, { icon: 'refresh' }, { icon: 'collapse-all' }]}>
-            </Sidebar.Section>
+            <Sidebar.Section
+              title="Sources"
+              actions={[
+                { icon: 'add', onClick: openNewPostgreSQLDataSource },
+                { icon: 'refresh' },
+                { icon: 'collapse-all' }
+              ]}
+            ></Sidebar.Section>
 
-            <Sidebar.Section title="Queries" actions={[{ icon: 'collapse-all' }]}>
-            </Sidebar.Section>
+            <Sidebar.Section
+              title="Queries"
+              actions={[{ icon: 'collapse-all' }]}
+            ></Sidebar.Section>
           </Sidebar>
 
           <TabBar />
@@ -32,7 +48,7 @@ const Home = () => {
         <StatusBar />
       </Layout>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

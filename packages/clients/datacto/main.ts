@@ -1,22 +1,19 @@
-import { app } from 'electron';
-import serve from 'electron-serve';
-
+import { app } from 'electron'
 import isDevelopment from 'electron-is-dev'
+import serve from 'electron-serve'
 
 import { registerModules } from '~/core/modules'
 import { registerWindows } from '~/windows'
 
 if (isDevelopment) {
-  app.setPath('userData', `${app.getPath('userData')} (development)`);
+  app.setPath('userData', `${app.getPath('userData')} (development)`)
 } else {
-  serve({ directory: 'app' });
+  serve({ directory: 'app' })
 }
 
 app.on('window-all-closed', () => {
-  app.quit();
-});
+  app.quit()
+})
 
 registerModules()
 registerWindows()
-
-console.log('o/')
