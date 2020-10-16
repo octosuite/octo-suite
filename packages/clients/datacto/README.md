@@ -1,3 +1,1 @@
-# Datacto
-
-Application to view and manage databases
+# Database GUI Client
