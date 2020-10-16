@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   & > * + * {
     margin-top: 12px;
   }
-`;
+`
 
 export const HostContainer = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ export const ActionsContainer = styled.div`
   & > * + * {
     margin-left: 8px;
   }
-`;
+`
 
 export const FillSpace = styled.div`
   flex: 1;
@@ -60,4 +60,4 @@ export const Observation = styled.span`
   color: #fff;
   opacity: 0.6;
   font-size: 11px;
-`;
+`

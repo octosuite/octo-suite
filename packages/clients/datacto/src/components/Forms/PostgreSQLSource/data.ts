@@ -1,4 +1,4 @@
-import { PostgreSQLSourceFormData } from "./types";
+import { PostgreSQLSourceFormData } from './types'
 
 export const defaultData: PostgreSQLSourceFormData = {
   name: 'New PostgreSQL Source',
