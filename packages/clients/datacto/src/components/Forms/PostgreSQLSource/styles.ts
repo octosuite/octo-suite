@@ -51,7 +51,7 @@ export const ActionsContainer = styled.div`
   }
 `;
 
-export const Flex = styled.div`
+export const FillSpace = styled.div`
   flex: 1;
   margin: 0;
 `

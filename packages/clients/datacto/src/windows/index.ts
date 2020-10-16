@@ -13,6 +13,15 @@ export function resolvePath(path: string) {
   return `app://./${path}.html`
 }
 
+export function getCenterOfWindow(window: BrowserWindow) {
+  const { x, y, width, height } = window.getBounds()
+
+  return {
+    x: x + (width / 2),
+    y: y + (height / 2),
+  }
+}
+
 export async function registerWindows() {
   await app.whenReady();
 

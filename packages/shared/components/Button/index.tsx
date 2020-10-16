@@ -1,8 +1,9 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
 
 import { Container, Label } from './styles';
+import { ButtonProps } from './types'
 
-const Button: React.FC<ButtonHTMLAttributes<HTMLButtonElement> & { secondary?: boolean }> = ({children, ...rest}) => {
+const Button: React.FC<ButtonProps> = ({ children, loading, ...rest }) => {
   return (
     <Container {...rest}>
       <Label>{children}</Label>
