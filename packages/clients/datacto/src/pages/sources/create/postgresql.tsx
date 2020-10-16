@@ -1,18 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { PostgreSQLDialog } from '~/dialogs/PostgreSQL'
+import { PostgreSQLSourceForm } from '~/components/Forms/PostgreSQLSource'
 
-const SourcesCreator: React.FC = () => {
+const PorgreSQLSourceCreator: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
         <title>Datacto - New Data Source (PostgreSQL)</title>
       </Head>
 
-      <PostgreSQLDialog />
+      <PostgreSQLSourceForm />
     </React.Fragment>
   );
 };
 
-export default SourcesCreator;
+export default PorgreSQLSourceCreator;
