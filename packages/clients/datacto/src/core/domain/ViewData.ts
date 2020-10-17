@@ -1,2 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-export interface ViewData {}
+export interface ViewData {
+  name: string
+}

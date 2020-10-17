@@ -1,2 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-export interface TableColumnData {}
+export interface TableColumnData {
+  name: string
+  type: string
+  typeName: string
+  length?: number
+}

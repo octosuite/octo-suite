@@ -36,7 +36,39 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
 
     setTestingConnection(true)
 
-    alert((await source.testConnection()) ? 'success' : 'failure')
+    await source.testConnection()
+
+    // const success = await source.testConnection()
+
+    // if (success) {
+    //   const databases = await source.getDatabases()
+
+    //   console.log({ databases })
+
+    //   const schemas = await source.getSchemas()
+
+    //   console.log({ schemas })
+
+    //   for (let schemaIndex = 0; schemaIndex < schemas.length; schemaIndex++) {
+    //     const schema = schemas[schemaIndex]
+
+    //     console.log({ schema })
+
+    //     const tables = await source.getTables(schema)
+
+    //     for (let tableIndex = 0; tableIndex < tables.length; tableIndex++) {
+    //       const table = tables[tableIndex]
+
+    //       const columns = await source.getTablesColumns(schema, table)
+
+    //       console.log({ table, columns })
+    //     }
+
+    //     const views = await source.getViews(schema)
+
+    //     console.log({ views })
+    //   }
+    // }
 
     setTestingConnection(false)
   }, [connectionURL, name])

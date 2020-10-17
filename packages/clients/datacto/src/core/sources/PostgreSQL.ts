@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DatabaseData } from '~/core/domain/DatabaseData'
-import { Query } from '~/core/domain/Query'
 import { SchemaData } from '~/core/domain/SchemaData'
 import { SourceData } from '~/core/domain/SourceData'
 import { SourceProvider } from '~/core/domain/SourceProvider'
@@ -9,7 +7,11 @@ import { TableData } from '~/core/domain/TableData'
 import { ViewData } from '~/core/domain/ViewData'
 import {
   testPostgreSQLConnection,
-  getPostgreSQLDatabases
+  getPostgreSQLDatabases,
+  getPostgreSQLSchemas,
+  getPostgreSQLTables,
+  getPostgreSQLColumns,
+  getPostgreSQLViews
 } from '~/core/modules/PostgreSQL/actions'
 
 export class PostgreSQLSource implements SourceProvider {
@@ -23,30 +25,22 @@ export class PostgreSQLSource implements SourceProvider {
     return getPostgreSQLDatabases(this.data.connectionURL)
   }
 
-  getSchemas(database: DatabaseData): Promise<SchemaData[]> {
-    throw new Error('Method not implemented.')
+  async getSchemas(): Promise<SchemaData[]> {
+    return getPostgreSQLSchemas(this.data.connectionURL)
   }
 
-  getTables(database: DatabaseData, schema: SchemaData): Promise<TableData[]> {
-    throw new Error('Method not implemented.')
+  async getTables(schema: SchemaData): Promise<TableData[]> {
+    return getPostgreSQLTables(this.data.connectionURL, schema)
   }
 
-  getTablesColumns(
-    database: DatabaseData,
+  async getTablesColumns(
     schema: SchemaData,
     table: TableData
   ): Promise<TableColumnData[]> {
-    throw new Error('Method not implemented.')
+    return getPostgreSQLColumns(this.data.connectionURL, schema, table)
   }
 
-  getViews(database: DatabaseData, schema: SchemaData): Promise<ViewData[]> {
-    throw new Error('Method not implemented.')
-  }
-
-  executeQuery<Result>(
-    query: string,
-    schema: SchemaData
-  ): Promise<Query<Result>> {
-    throw new Error('Method not implemented.')
+  async getViews(schema: SchemaData): Promise<ViewData[]> {
+    return getPostgreSQLViews(this.data.connectionURL, schema)
   }
 }
