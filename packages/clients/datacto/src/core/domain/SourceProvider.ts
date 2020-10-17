@@ -6,8 +6,7 @@ import { TableData } from './TableData'
 import { ViewData } from './ViewData'
 
 export interface SourceProvider {
-  testConnection(connectionURL: string): Promise<boolean>
-  disconnect(): Promise<void>
+  testConnection(): Promise<boolean>
   getDatabases(): Promise<DatabaseData[]>
   getSchemas(database: DatabaseData): Promise<SchemaData[]>
   getTables(database: DatabaseData, schema: SchemaData): Promise<TableData[]>

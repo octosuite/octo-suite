@@ -32,14 +32,14 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
   const [isTestingConnection, setTestingConnection] = useState(false)
 
   const handleTestConnection = useCallback(async () => {
-    const source = new PostgreSQLSource()
+    const source = new PostgreSQLSource({ connectionURL, name })
 
     setTestingConnection(true)
 
-    alert((await source.testConnection(connectionURL)) ? 'success' : 'failure')
+    alert((await source.testConnection()) ? 'success' : 'failure')
 
     setTestingConnection(false)
-  }, [connectionURL])
+  }, [connectionURL, name])
 
   useEffect(() => {
     const connection = new ConnectionString(connectionURL)

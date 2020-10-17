@@ -2,23 +2,25 @@
 import { DatabaseData } from '~/core/domain/DatabaseData'
 import { Query } from '~/core/domain/Query'
 import { SchemaData } from '~/core/domain/SchemaData'
+import { SourceData } from '~/core/domain/SourceData'
 import { SourceProvider } from '~/core/domain/SourceProvider'
 import { TableColumnData } from '~/core/domain/TableColumnData'
 import { TableData } from '~/core/domain/TableData'
 import { ViewData } from '~/core/domain/ViewData'
-import { testPostgreSQLConnection } from '~/core/modules/PostgreSQL/actions'
+import {
+  testPostgreSQLConnection,
+  getPostgreSQLDatabases
+} from '~/core/modules/PostgreSQL/actions'
 
 export class PostgreSQLSource implements SourceProvider {
-  async testConnection(connectionURL: string): Promise<boolean> {
-    return testPostgreSQLConnection(connectionURL)
+  constructor(private data: SourceData) {}
+
+  async testConnection(): Promise<boolean> {
+    return testPostgreSQLConnection(this.data.connectionURL)
   }
 
-  disconnect(): Promise<void> {
-    throw new Error('Method not implemented.')
-  }
-
-  getDatabases(): Promise<DatabaseData[]> {
-    throw new Error('Method not implemented.')
+  async getDatabases(): Promise<DatabaseData[]> {
+    return getPostgreSQLDatabases(this.data.connectionURL)
   }
 
   getSchemas(database: DatabaseData): Promise<SchemaData[]> {
