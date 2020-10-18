@@ -13,9 +13,7 @@ const Sidebar: React.FC<SidebarProps> & {
     <Wrapper>
       <SidebarHeader {...rest} />
 
-      <Container>
-        {children}
-      </Container>
+      <Container>{children}</Container>
     </Wrapper>
   )
 }

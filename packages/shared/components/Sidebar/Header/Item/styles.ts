@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.button`
   display: flex;
@@ -18,11 +18,11 @@ export const Container = styled.button`
   }
 
   :focus {
-    border-color: #0E639C;
+    border-color: #0e639c;
   }
 
   :disabled {
     cursor: default;
     color: #999;
   }
-`;
+`

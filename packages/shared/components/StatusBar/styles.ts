@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   grid-area: STTB;
 
-  background: #007ACC;
-`;
+  background: #007acc;
+`

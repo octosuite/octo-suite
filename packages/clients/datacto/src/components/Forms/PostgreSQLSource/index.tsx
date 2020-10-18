@@ -4,7 +4,8 @@ import { HostType, ConnectionString } from 'connection-string'
 
 import { TextInput, Button } from '@shared/components'
 
-import { PostgreSQLSource } from '~/core/sources/PostgreSQL'
+import { createPostgreSQLSource } from '~/core/sources/PostgreSQL'
+import { saveSource } from '~/store/sources/actionts'
 import { closeCurrentWindow } from '~/utils/close-current-window'
 
 import { defaultData } from './data'
@@ -16,6 +17,7 @@ import {
   FillSpace,
   Observation
 } from './styles'
+import { TestConnectionResult } from './TestConnectionResult'
 import { PostgreSQLSourceFormProps } from './types'
 
 const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
@@ -29,48 +31,36 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
   const [database, setDatabase] = useState(data.database)
   const [connectionURL, setConnectionURL] = useState(data.connectionURL)
 
+  const [hasNameError, setHasNameError] = useState(false)
   const [isTestingConnection, setTestingConnection] = useState(false)
+  const [testConnectionResult, setTestConnectionResult] = useState<
+    boolean | undefined
+  >(undefined)
 
   const handleTestConnection = useCallback(async () => {
-    const source = new PostgreSQLSource({ connectionURL, name })
+    const source = createPostgreSQLSource({ connectionURL, name })
 
     setTestingConnection(true)
+    setTestConnectionResult(undefined)
 
-    await source.testConnection()
+    const result = await source.testConnection()
 
-    // const success = await source.testConnection()
-
-    // if (success) {
-    //   const databases = await source.getDatabases()
-
-    //   console.log({ databases })
-
-    //   const schemas = await source.getSchemas()
-
-    //   console.log({ schemas })
-
-    //   for (let schemaIndex = 0; schemaIndex < schemas.length; schemaIndex++) {
-    //     const schema = schemas[schemaIndex]
-
-    //     console.log({ schema })
-
-    //     const tables = await source.getTables(schema)
-
-    //     for (let tableIndex = 0; tableIndex < tables.length; tableIndex++) {
-    //       const table = tables[tableIndex]
-
-    //       const columns = await source.getTablesColumns(schema, table)
-
-    //       console.log({ table, columns })
-    //     }
-
-    //     const views = await source.getViews(schema)
-
-    //     console.log({ views })
-    //   }
-    // }
+    setTestConnectionResult(result)
 
     setTestingConnection(false)
+  }, [connectionURL, name])
+
+  const handleSaveConnection = useCallback(async () => {
+    const source = createPostgreSQLSource({ connectionURL, name })
+
+    try {
+      await saveSource(source.getData())
+      closeCurrentWindow()
+    } catch (error) {
+      console.error(error)
+
+      setHasNameError(true)
+    }
   }, [connectionURL, name])
 
   useEffect(() => {
@@ -102,7 +92,9 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
       <TextInput
         label="Source Name"
         value={name}
+        hasError={hasNameError}
         onChange={e => setName(e.target.value)}
+        onFocus={() => setHasNameError(false)}
       />
 
       <HostContainer>
@@ -152,6 +144,10 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
 
       <FillSpace />
 
+      {testConnectionResult !== undefined && (
+        <TestConnectionResult success={testConnectionResult} />
+      )}
+
       <ActionsContainer>
         <Button
           secondary
@@ -166,7 +162,8 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
         <Button onClick={closeCurrentWindow} secondary>
           Cancel
         </Button>
-        <Button>Create Source</Button>
+
+        <Button onClick={handleSaveConnection}>Create Source</Button>
       </ActionsContainer>
     </Container>
   )

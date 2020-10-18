@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Head from 'next/head'
 
@@ -11,9 +11,14 @@ import {
   StatusBar
 } from '@shared/components'
 
+import { useSources } from '~/hooks/use-sources'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
+  const sources = useSources()
+
+  useEffect(() => console.log(sources), [sources])
+
   return (
     <React.Fragment>
       <Head>

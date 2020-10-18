@@ -1,4 +1,5 @@
 export * from './ActivityBar'
+export * from './ActivityIndicator'
 export * from './Button'
 export * from './Codicon'
 export * from './Content'

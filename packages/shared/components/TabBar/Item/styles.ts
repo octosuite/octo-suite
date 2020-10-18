@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.button`
   display: flex;
@@ -16,10 +16,10 @@ export const Container = styled.button`
     height: 16px;
     width: 16px;
   }
-`;
+`
 
-export const Label  = styled.span`
-  color: #FFFFFF;
+export const Label = styled.span`
+  color: #ffffff;
   font-size: 13px;
   line-height: 15px;
   opacity: 0.5;

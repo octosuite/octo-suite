@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
+
+import { Container } from './styles'
 
 export const STATUS_BAR_HEIGHT = 22
 
-import { Container } from './styles';
-
 const StatusBar: React.FC = () => {
-  return <Container />;
+  return <Container />
 }
 
-export {StatusBar};
+export { StatusBar }

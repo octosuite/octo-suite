@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState
+} from 'react'
 
 import { ActivityBarContextHandles, ActivityBarContextProps } from './types'
 
@@ -11,13 +17,16 @@ export const ActivityBarContextProvider: React.FC<ActivityBarContextProps> = ({
 }) => {
   const [activeItem, setActive] = useState<string>(initialItem)
 
-  const setActiveItem = useCallback((item: string) => {
-    setActive(item)
+  const setActiveItem = useCallback(
+    (item: string) => {
+      setActive(item)
 
-    if (onActiveItemChange) {
-      onActiveItemChange(item)
-    }
-  }, [onActiveItemChange])
+      if (onActiveItemChange) {
+        onActiveItemChange(item)
+      }
+    },
+    [onActiveItemChange]
+  )
 
   return (
     <ActivityBarContext.Provider value={{ activeItem, setActiveItem }}>
@@ -30,7 +39,7 @@ export const useActiveItem = (item: string): [boolean, () => void] => {
   const { activeItem, setActiveItem } = useContext(ActivityBarContext)
 
   const isActive = useMemo(() => activeItem === item, [activeItem, item])
-  
+
   const setAsActive = useCallback(() => {
     if (!isActive) {
       setActiveItem(item)

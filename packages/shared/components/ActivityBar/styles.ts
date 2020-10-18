@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   grid-area: ACTB;
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
   background-color: #333;
   width: 48px;
-`;
+`
 
 export const Container = styled.div`
   display: flex;

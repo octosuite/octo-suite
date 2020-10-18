@@ -4,13 +4,18 @@
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "dependencies": {
+    "@shared/eslint-config-react": "1.0.0",
     "react": "^16.13.1",
     "react-icons": "^3.11.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.51",
-    "@types/styled-components": "^5.1.4"
+    "@types/styled-components": "^5.1.4",
+    "eslint": "^7.11.0"
   }
 }

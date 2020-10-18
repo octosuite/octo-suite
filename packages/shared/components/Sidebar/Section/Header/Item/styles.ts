@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -11,7 +11,8 @@ export const Container = styled.div`
   height: 20px;
   width: 28px;
 
-  i, svg {
+  i,
+  svg {
     color: #ccc;
     height: 16px;
     width: 16px;
@@ -19,8 +20,9 @@ export const Container = styled.div`
   }
 
   :active {
-    i, svg {
-      transform: scale(1.2)
+    i,
+    svg {
+      transform: scale(1.2);
     }
   }
-`;
+`

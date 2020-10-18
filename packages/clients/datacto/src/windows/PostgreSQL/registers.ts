@@ -14,7 +14,7 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
       width: 400,
       minWidth: 370,
       height: 480,
-      minHeight: 460,
+      minHeight: 480,
       parent,
       modal: true,
       maximizable: false,

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 interface WrapperProps {
   isActive: boolean
@@ -22,13 +22,15 @@ export const Wrapper = styled.button<WrapperProps>`
 
   svg {
     height: 24px;
-    width: 24px;  
+    width: 24px;
   }
 
-  ${({ isActive, hideIndicator }) => isActive && css`
-    border-left-color: ${hideIndicator ? 'transparent' : '#fff'} !important;
-    color: rgba(255, 255, 255, 1);
-  `}
+  ${({ isActive, hideIndicator }) =>
+    isActive &&
+    css`
+      border-left-color: ${hideIndicator ? 'transparent' : '#fff'} !important;
+      color: rgba(255, 255, 255, 1);
+    `}
 
   ${({ hideIndicator }) => css`
     :focus {
@@ -40,4 +42,4 @@ export const Wrapper = styled.button<WrapperProps>`
   :hover {
     color: rgba(255, 255, 255, 1);
   }
-`;
+`

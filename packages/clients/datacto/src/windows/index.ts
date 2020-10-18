@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import isDevelopment from 'electron-is-dev'
 
+import { createDatabase } from '~/store/database'
+
 import { registerOpenNewPostgreSQLDataSource } from './PostgreSQL/registers'
 
 export function resolvePath(path: string) {
@@ -24,6 +26,7 @@ export function getCenterOfWindow(window: BrowserWindow) {
 
 export async function registerWindows() {
   await app.whenReady()
+  const database = await createDatabase()
 
   const mainWindow = new BrowserWindow({
     title: 'Datacto',
@@ -38,6 +41,10 @@ export async function registerWindows() {
   mainWindow.removeMenu()
 
   mainWindow.loadURL(resolvePath('home'))
+
+  mainWindow.on('close', () => {
+    database.close()
+  })
 
   registerOpenNewPostgreSQLDataSource(mainWindow)
 }

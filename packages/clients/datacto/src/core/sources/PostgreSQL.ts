@@ -1,10 +1,10 @@
-import { DatabaseData } from '~/core/domain/DatabaseData'
 import { SchemaData } from '~/core/domain/SchemaData'
 import { SourceData } from '~/core/domain/SourceData'
-import { SourceProvider } from '~/core/domain/SourceProvider'
-import { TableColumnData } from '~/core/domain/TableColumnData'
+import {
+  PostgreSQLSourceProvider,
+  SourceProviderList
+} from '~/core/domain/SourceProvider'
 import { TableData } from '~/core/domain/TableData'
-import { ViewData } from '~/core/domain/ViewData'
 import {
   testPostgreSQLConnection,
   getPostgreSQLDatabases,
@@ -14,33 +14,36 @@ import {
   getPostgreSQLViews
 } from '~/core/modules/PostgreSQL/actions'
 
-export class PostgreSQLSource implements SourceProvider {
-  constructor(private data: SourceData) {}
+export function createPostgreSQLSource(
+  data: Omit<SourceData, 'type'>
+): PostgreSQLSourceProvider {
+  return {
+    getData: () => ({ ...data, type: SourceProviderList.POSTGRESQL }),
 
-  async testConnection(): Promise<boolean> {
-    return testPostgreSQLConnection(this.data.connectionURL)
-  }
+    testConnection: async () => {
+      return testPostgreSQLConnection(data.connectionURL)
+    },
 
-  async getDatabases(): Promise<DatabaseData[]> {
-    return getPostgreSQLDatabases(this.data.connectionURL)
-  }
+    getDatabases: async () => {
+      return getPostgreSQLDatabases(data.connectionURL)
+    },
 
-  async getSchemas(): Promise<SchemaData[]> {
-    return getPostgreSQLSchemas(this.data.connectionURL)
-  }
+    getSchemas: async () => {
+      return getPostgreSQLSchemas(data.connectionURL)
+    },
 
-  async getTables(schema: SchemaData): Promise<TableData[]> {
-    return getPostgreSQLTables(this.data.connectionURL, schema)
-  }
+    getTables: async (schema: SchemaData) => {
+      return getPostgreSQLTables(data.connectionURL, schema)
+    },
 
-  async getTablesColumns(
-    schema: SchemaData,
-    table: TableData
-  ): Promise<TableColumnData[]> {
-    return getPostgreSQLColumns(this.data.connectionURL, schema, table)
-  }
+    getTablesColumns: async (schema: SchemaData, table: TableData) => {
+      return getPostgreSQLColumns(data.connectionURL, schema, table)
+    },
 
-  async getViews(schema: SchemaData): Promise<ViewData[]> {
-    return getPostgreSQLViews(this.data.connectionURL, schema)
+    getViews: async (schema: SchemaData) => {
+      return getPostgreSQLViews(data.connectionURL, schema)
+    },
+
+    type: SourceProviderList.POSTGRESQL
   }
 }
