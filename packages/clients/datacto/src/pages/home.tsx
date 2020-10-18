@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import Head from 'next/head'
+import { type } from 'os'
 
 import {
   ActivityBar,
@@ -8,16 +9,16 @@ import {
   Content,
   Sidebar,
   TabBar,
-  StatusBar
+  StatusBar,
+  FolderList
 } from '@shared/components'
+import { ItemType } from '@shared/components/FolderList/types'
 
 import { useSources } from '~/hooks/use-sources'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
   const sources = useSources()
-
-  useEffect(() => console.log(sources), [sources])
 
   return (
     <React.Fragment>
@@ -39,7 +40,36 @@ const Home = () => {
                 { icon: 'refresh' },
                 { icon: 'collapse-all' }
               ]}
-            ></Sidebar.Section>
+            >
+              <FolderList
+                items={sources.map(source => ({
+                  type: ItemType.FOLDER,
+                  name: source.name,
+                  items: [
+                    {
+                      type: ItemType.FOLDER,
+                      name: 'public',
+                      items: [
+                        {
+                          type: ItemType.FOLDER,
+                          name: 'tables',
+                          items: [
+                            {
+                              type: ItemType.FILE,
+                              name: 'users'
+                            }
+                          ]
+                        },
+                        {
+                          type: ItemType.FOLDER,
+                          name: 'views'
+                        }
+                      ]
+                    }
+                  ]
+                }))}
+              />
+            </Sidebar.Section>
 
             <Sidebar.Section
               title="Queries"

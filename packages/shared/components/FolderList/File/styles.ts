@@ -1,19 +1,23 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.button`
+interface WrapperProps {
+  level: number
+}
+
+export const Wrapper = styled.button<WrapperProps>`
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: transparent;
   border: 1px solid transparent;
   color: #ccc;
-  height: 22px;
+  height: 24px;
+  padding-left: ${({ level }) => 22 + 15 * level}px;
 
   i,
   svg {
-    margin-left: 1px;
-    margin-right: 2px;
+    margin-right: 4px;
   }
 
   :focus {
@@ -31,11 +35,9 @@ export const Container = styled.div.attrs({
   height: 22px;
 `
 
-export const Title = styled.strong`
+export const Title = styled.span`
   flex: 1;
-  font-size: 11px;
-  line-height: 13px;
-  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
   text-align: left;
-  text-transform: uppercase;
 `
