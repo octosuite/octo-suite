@@ -9,19 +9,24 @@ export const Wrapper = styled.button<WrapperProps>`
   flex-direction: row;
   align-items: center;
 
+  width: 100%;
   background-color: transparent;
   border: 1px solid transparent;
   color: #ccc;
   height: 24px;
-  padding-left: ${({ level }) => 22 + 15 * level}px;
+  padding-left: ${({ level }) => 21 + 15 * level}px;
 
   i,
   svg {
     margin-right: 4px;
   }
 
+  :hover {
+    background-color: #292929;
+  }
+
   :focus {
-    border-color: #808080;
+    background-color: #062f4a;
   }
 `
 
@@ -38,6 +43,6 @@ export const Container = styled.div.attrs({
 export const Title = styled.span`
   flex: 1;
   font-size: 13px;
-  line-height: 15px;
+  line-height: 16px;
   text-align: left;
 `

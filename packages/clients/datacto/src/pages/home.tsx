@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Head from 'next/head'
-import { type } from 'os'
 
 import {
   ActivityBar,
@@ -14,6 +13,7 @@ import {
 } from '@shared/components'
 import { ItemType } from '@shared/components/FolderList/types'
 
+import { PostgreSQLSourceIcon } from '~/components/SourceIcon/PostgreSQL'
 import { useSources } from '~/hooks/use-sources'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
@@ -44,25 +44,30 @@ const Home = () => {
               <FolderList
                 items={sources.map(source => ({
                   type: ItemType.FOLDER,
+                  icon: <PostgreSQLSourceIcon width={16} height={16} />,
                   name: source.name,
                   items: [
                     {
                       type: ItemType.FOLDER,
                       name: 'public',
+                      icon: 'folder',
                       items: [
                         {
                           type: ItemType.FOLDER,
                           name: 'tables',
+                          icon: 'folder',
                           items: [
                             {
                               type: ItemType.FILE,
-                              name: 'users'
+                              name: 'users',
+                              icon: 'file'
                             }
                           ]
                         },
                         {
                           type: ItemType.FOLDER,
-                          name: 'views'
+                          name: 'views',
+                          icon: 'folder'
                         }
                       ]
                     }

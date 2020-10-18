@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { GlobalStyle } from '@shared/styles'
 
 import '@shared/components/Codicon/styles.css'
+import 'react-perfect-scrollbar/dist/css/styles.css'
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props

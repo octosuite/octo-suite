@@ -38,6 +38,8 @@ export function registerWatchSources() {
 
     sourcesStore.onDidAnyChange(() => notify())
 
+    // TODO: unsubscribe
+
     notify()
   })
 }

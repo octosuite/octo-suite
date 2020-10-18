@@ -24,7 +24,7 @@ const Folder: React.VFC<FolderProps> = ({
   items = [],
   level = 0
 }) => {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <Wrapper>

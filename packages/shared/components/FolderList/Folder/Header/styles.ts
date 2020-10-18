@@ -20,8 +20,12 @@ export const Wrapper = styled.button<WrapperProps>`
     margin-right: 4px;
   }
 
+  :hover {
+    background-color: #292929;
+  }
+
   :focus {
-    border-color: #808080;
+    background-color: #062f4a;
   }
 `
 
@@ -38,6 +42,6 @@ export const Container = styled.div.attrs({
 export const Title = styled.span`
   flex: 1;
   font-size: 13px;
-  line-height: 15px;
+  line-height: 16px;
   text-align: left;
 `
