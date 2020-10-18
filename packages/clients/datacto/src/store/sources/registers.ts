@@ -5,22 +5,39 @@ import { SourceData } from '~/core/domain/SourceData'
 
 import { SourcesChannel } from './types'
 
-const sourcesStore = new Store<Record<string, SourceData>>()
+const sourcesStore = new Store<Record<'sources', SourceData[]>>({ watch: true })
 
 export function registerSaveSource() {
   ipcMain.on(
     SourcesChannel.save.name,
     (event: IpcMainEvent, data: SourceData) => {
-      if (sourcesStore.has(data.name)) {
-        event.sender.send(
-          SourcesChannel.save.failure,
-          'Source name already exists'
-        )
+      const sources = sourcesStore.get('sources', [])
+
+      const source = sources.find(source => source.name === data.name)
+
+      if (source) {
+        event.sender.send(SourcesChannel.save.failure, 'Name already exists')
       } else {
-        sourcesStore.set(data.name, data)
+        sources.push(data)
+
+        sourcesStore.set('sources', sources)
 
         event.sender.send(SourcesChannel.save.success)
       }
     }
   )
+}
+
+export function registerWatchSources() {
+  ipcMain.on(SourcesChannel.watch.name, (event: IpcMainEvent) => {
+    function notify() {
+      const sources = sourcesStore.get('sources')
+
+      event.sender.send(SourcesChannel.watch.change, sources)
+    }
+
+    sourcesStore.onDidAnyChange(() => notify())
+
+    notify()
+  })
 }

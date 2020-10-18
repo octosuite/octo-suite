@@ -20,3 +20,14 @@ export async function saveSource(data: SourceData): Promise<void> {
     ipcRenderer.send(SourcesChannel.save.name, data)
   })
 }
+
+export function watchSources(callback: (sources: SourceData[]) => void) {
+  ipcRenderer.on(
+    SourcesChannel.watch.change,
+    (_: IpcRendererEvent, sources: SourceData[]) => {
+      callback(sources)
+    }
+  )
+
+  ipcRenderer.send(SourcesChannel.watch.name)
+}

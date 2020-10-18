@@ -28,7 +28,6 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
     })
 
     window.removeMenu()
-    window.webContents.openDevTools()
 
     window.loadURL(resolvePath('sources/create/postgresql'))
   })

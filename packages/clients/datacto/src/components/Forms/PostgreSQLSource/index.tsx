@@ -55,9 +55,10 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
 
     try {
       await saveSource(source.getData())
-      console.log('saved')
+      closeCurrentWindow()
     } catch (error) {
-      console.log(error)
+      console.error(error)
+
       setHasNameError(true)
     }
   }, [connectionURL, name])
