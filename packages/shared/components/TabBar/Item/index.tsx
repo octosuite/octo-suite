@@ -1,7 +1,7 @@
-import React from 'react';
-
+import React from 'react'
 import { MdFolder } from 'react-icons/md'
-import { Container, Label } from './styles';
+
+import { Container, Label } from './styles'
 
 const TabBarItem: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const TabBarItem: React.FC = () => {
       <MdFolder color="#999" />
       <Label>test</Label>
     </Container>
-  );
+  )
 }
 
-export {TabBarItem};
+export { TabBarItem }

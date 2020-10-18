@@ -1,31 +1,24 @@
-import React from 'react';
+import React from 'react'
 
-import { ActivityBarItem } from './Item'
 import { ActivityBarContextProvider } from './context'
-import { Wrapper, Container } from './styles';
-import { ActivityBarProps } from './types';
+import { ActivityBarItem } from './Item'
+import { Wrapper, Container } from './styles'
+import { ActivityBarProps } from './types'
 
-const ActivityBar: React.FC<ActivityBarProps> & { 
+const ActivityBar: React.FC<ActivityBarProps> & {
   Item: typeof ActivityBarItem
 } = ({ children, exludeSettings, ...rest }) => {
   return (
     <ActivityBarContextProvider {...rest}>
       <Wrapper>
-        <Container>
-          {children}
-        </Container>
+        <Container>{children}</Container>
 
         {!exludeSettings && (
-          <ActivityBarItem
-            name="settings"
-            icon="settings-gear"
-            onClick={() => {}}
-            hideIndicator
-          />
+          <ActivityBarItem name="settings" icon="settings-gear" hideIndicator />
         )}
       </Wrapper>
     </ActivityBarContextProvider>
-  );
+  )
 }
 
 ActivityBar.Item = ActivityBarItem

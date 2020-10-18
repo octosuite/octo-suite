@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -26,4 +26,4 @@ export const Container = styled.div.attrs({
   :focus {
     border-color: #808080;
   }
-`;
+`

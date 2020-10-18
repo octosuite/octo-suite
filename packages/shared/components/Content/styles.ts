@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 import { STATUS_BAR_HEIGHT } from '../StatusBar'
 import { ContentProps } from './types'
@@ -25,5 +25,5 @@ export const Container = styled.div<Pick<ContentProps, 'hasSidebar'>>`
   height: 100%;
   width: 100%;
 
-  ${({ hasSidebar }) => hasSidebar ? WithSidebarStyle : WithoutSidebarStyle}
-`;
+  ${({ hasSidebar }) => (hasSidebar ? WithSidebarStyle : WithoutSidebarStyle)}
+`

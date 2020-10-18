@@ -1,12 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 import { Codicon } from '@shared/components/Codicon'
 
-import { Container } from './styles';
+import { Container } from './styles'
 import { SidebarHeaderItemProps } from './types'
 
 const SidebarHeaderItem: React.VFC<SidebarHeaderItemProps> = ({
-  icon, ...rest
+  icon,
+  ...rest
 }) => {
   return (
     <Container {...rest}>

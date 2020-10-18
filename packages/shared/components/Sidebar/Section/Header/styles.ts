@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.button`
   display: flex;
@@ -10,7 +10,8 @@ export const Wrapper = styled.button`
   color: #ccc;
   height: 22px;
 
-  i, svg {
+  i,
+  svg {
     margin-left: 1px;
     margin-right: 2px;
   }
@@ -18,7 +19,7 @@ export const Wrapper = styled.button`
   :focus {
     border-color: #808080;
   }
-`;
+`
 
 export const Container = styled.div.attrs({
   className: 'actions'

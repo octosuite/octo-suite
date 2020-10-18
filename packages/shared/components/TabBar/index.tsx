@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 import { TabBarItem } from './Item'
-import { Wrapper } from './styles';
+import { Wrapper } from './styles'
 
 const TabBar: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const TabBar: React.FC = () => {
       <TabBarItem />
       <TabBarItem />
     </Wrapper>
-  );
+  )
 }
 
 export { TabBar }

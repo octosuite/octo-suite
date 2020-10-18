@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 import { SidebarSectionHeader } from './Header'
-import { Wrapper, Container } from './styles';
+import { Wrapper, Container } from './styles'
 import { SidebarSectionProps } from './types'
 
 const SidebarSection: React.FC<SidebarSectionProps> & {
@@ -11,14 +11,12 @@ const SidebarSection: React.FC<SidebarSectionProps> & {
     <Wrapper>
       <SidebarSectionHeader {...rest} />
 
-      <Container>
-        {children}
-      </Container>
+      <Container>{children}</Container>
     </Wrapper>
-  );
+  )
 }
 
 SidebarSection.Header = SidebarSectionHeader
 
 export * from './Header'
-export { SidebarSection };
+export { SidebarSection }

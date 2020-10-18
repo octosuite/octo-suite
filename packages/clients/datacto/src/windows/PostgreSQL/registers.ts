@@ -14,7 +14,7 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
       width: 400,
       minWidth: 370,
       height: 480,
-      minHeight: 460,
+      minHeight: 480,
       parent,
       modal: true,
       maximizable: false,
@@ -28,6 +28,7 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
     })
 
     window.removeMenu()
+    window.webContents.openDevTools()
 
     window.loadURL(resolvePath('sources/create/postgresql'))
   })

@@ -1,4 +1,4 @@
-import { SidebarSectionHeaderItemProps } from "./Item/types";
+import { SidebarSectionHeaderItemProps } from './Item/types'
 
 export interface SidebarSectionHeaderProps {
   title: string

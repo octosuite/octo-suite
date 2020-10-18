@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 interface Props {
   secondary?: boolean
@@ -8,19 +8,19 @@ const PrimaryStyle = css`
   & > div {
     background: rgba(14, 99, 156, 0.8);
   }
-  
+
   :hover {
     & > div {
-      background: #0E639C;
+      background: #0e639c;
     }
   }
 
   :focus {
     & > div {
-      background: #0E639C;
+      background: #0e639c;
     }
 
-    border-color: #0E639C;
+    border-color: #0e639c;
   }
 `
 
@@ -31,16 +31,16 @@ const SecondaryStyle = css`
 
   :hover {
     & > div {
-      background: #3A3D41;
+      background: #3a3d41;
     }
   }
 
   :focus {
     & > div {
-      background: #3A3D41;
+      background: #3a3d41;
     }
 
-    border-color: #0E639C;
+    border-color: #0e639c;
   }
 `
 
@@ -54,10 +54,16 @@ export const Container = styled.button<Props>`
     opacity: 0.4;
   }
 
-  ${({ secondary }) => secondary ? SecondaryStyle : PrimaryStyle}
-`;
+  ${({ secondary }) => (secondary ? SecondaryStyle : PrimaryStyle)}
+`
 
-export const Label = styled.div`
+interface LabelProps {
+  loading?: boolean
+}
+
+export const Label = styled.div<LabelProps>`
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,10 +72,23 @@ export const Label = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+
   color: #fff;
+  fill: #fff;
   font-size: 13px;
   line-height: 15px;
   padding: 0 11px;
   height: 100%;
-`;
+
+  svg {
+    position: absolute;
+  }
+
+  ${({ loading }) =>
+    loading &&
+    css`
+      span {
+        opacity: 0;
+      }
+    `}
+`

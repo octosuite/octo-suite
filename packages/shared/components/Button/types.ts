@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react'
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { 
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   secondary?: boolean
-  loading?: boolean | undefined
+  loading?: boolean
 }

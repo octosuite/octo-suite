@@ -1,10 +1,12 @@
 import { DatabaseData } from './DatabaseData'
 import { SchemaData } from './SchemaData'
+import { SourceData } from './SourceData'
 import { TableColumnData } from './TableColumnData'
 import { TableData } from './TableData'
 import { ViewData } from './ViewData'
 
-export interface SourceProvider {
+interface BaseSourceProvider {
+  getData(): SourceData
   testConnection(): Promise<boolean>
   getDatabases(): Promise<DatabaseData[]>
   getSchemas(): Promise<SchemaData[]>
@@ -15,9 +17,14 @@ export interface SourceProvider {
     table: TableData
   ): Promise<TableColumnData[]>
   getViews(database: DatabaseData, schema: SchemaData): Promise<ViewData[]>
-
-  // executeQuery<Result>(
-  //   query: string,
-  //   schema: SchemaData
-  // ): Promise<Query<Result>>
 }
+
+export enum SourceProviderList {
+  POSTGRESQL = 'SourceProviderList.POSTGRESQL'
+}
+
+export interface PostgreSQLSourceProvider extends BaseSourceProvider {
+  readonly type: typeof SourceProviderList.POSTGRESQL
+}
+
+export type SourceProvider = PostgreSQLSourceProvider

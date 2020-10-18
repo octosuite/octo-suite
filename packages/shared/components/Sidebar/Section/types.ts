@@ -1,3 +1,3 @@
-import { SidebarSectionHeaderProps } from "./Header/types";
+import { SidebarSectionHeaderProps } from './Header/types'
 
-export interface SidebarSectionProps extends SidebarSectionHeaderProps {}
+export type SidebarSectionProps = SidebarSectionHeaderProps
