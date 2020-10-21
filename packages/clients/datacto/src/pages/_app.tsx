@@ -1,9 +1,13 @@
 import React from 'react'
+import { Provider as ReduxProvider } from 'react-redux'
 
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { GlobalStyle } from '@shared/styles'
+
+import { store, persistor } from '~/store'
 
 import '@shared/components/Codicon/styles.css'
 import 'react-perfect-scrollbar/dist/css/styles.css'
@@ -13,6 +17,7 @@ export default function (props: AppProps) {
 
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
+
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
@@ -29,7 +34,11 @@ export default function (props: AppProps) {
         <title>Datacto</title>
       </Head>
 
-      <Component {...pageProps} />
+      <ReduxProvider store={store}>
+        <PersistGate persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </ReduxProvider>
 
       <GlobalStyle />
     </React.Fragment>

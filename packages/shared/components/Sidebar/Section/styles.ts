@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   flex: 1;
+  max-height: 100%;
 
   .actions {
     visibility: hidden;
@@ -22,6 +23,8 @@ export const Container = styled.div.attrs({
 })`
   border: 1px solid transparent;
   height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 
   :focus {
     border-color: #808080;

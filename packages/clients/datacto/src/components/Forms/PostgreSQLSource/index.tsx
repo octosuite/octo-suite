@@ -5,7 +5,6 @@ import { HostType, ConnectionString } from 'connection-string'
 import { TextInput, Button } from '@shared/components'
 
 import { createPostgreSQLSource } from '~/core/sources/PostgreSQL'
-import { saveSource } from '~/store/sources/actionts'
 import { closeCurrentWindow } from '~/utils/close-current-window'
 
 import { defaultData } from './data'
@@ -51,10 +50,10 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
   }, [connectionURL, name])
 
   const handleSaveConnection = useCallback(async () => {
-    const source = createPostgreSQLSource({ connectionURL, name })
+    // TODO: const source = createPostgreSQLSource({ connectionURL, name })
 
     try {
-      await saveSource(source.getData())
+      // await saveSource(source.getData())
       closeCurrentWindow()
     } catch (error) {
       console.error(error)

@@ -14,4 +14,5 @@ const FolderList: React.VFC<FolderListProps> = ({ items = [] }) => {
   )
 }
 
+export * from './types'
 export { FolderList }

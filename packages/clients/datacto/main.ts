@@ -3,7 +3,6 @@ import isDevelopment from 'electron-is-dev'
 import serve from 'electron-serve'
 
 import { registerModules } from '~/core/modules'
-import { registerStores } from '~/store'
 import { registerWindows } from '~/windows'
 
 if (isDevelopment) {
@@ -17,5 +16,4 @@ app.on('window-all-closed', () => {
 })
 
 registerModules()
-registerStores()
 registerWindows()

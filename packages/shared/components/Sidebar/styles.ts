@@ -19,6 +19,8 @@ export const Wrapper = styled.div`
 
   background: #252526;
   width: 300px;
+  overflow: hidden;
+  max-height: 100%;
 `
 
 export const Container = styled.div`
@@ -26,4 +28,6 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  height: 100%;
+  max-height: 100%;
 `
