@@ -59,17 +59,6 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
     const source = createPostgreSQLSource({ connectionURL, name })
 
     dispatch(addSourceRequest(source.getData()))
-
-    // TODO: const source = createPostgreSQLSource({ connectionURL, name })
-
-    // try {
-    // await saveSource(source.getData())
-    //   closeCurrentWindow()
-    // } catch (error) {
-    //   console.error(error)
-
-    //   setHasNameError(true)
-    // }
   }, [dispatch, connectionURL, name])
 
   useEffect(() => {
@@ -97,6 +86,7 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
   }, [host, port, user, pass, database])
 
   useWatchAction(closeCurrentWindow, [Types.ADD_SOURCE_SUCCESS])
+  useWatchAction(() => setHasNameError(true), [Types.ADD_SOURCE_FAILURE])
 
   return (
     <Container>

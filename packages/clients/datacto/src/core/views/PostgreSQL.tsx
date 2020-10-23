@@ -13,9 +13,6 @@ export function generatePostgreSQLView(
 ) {
   const { name } = source.getData()
 
-  // let loadingSchemas = true
-  // loadingSchemas = false
-
   const folder: FolderItem = {
     name,
     type: ItemType.FOLDER,
