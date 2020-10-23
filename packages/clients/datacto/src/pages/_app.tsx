@@ -5,6 +5,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import { ForwardReduxActionFromMain } from '@shared/components'
 import { GlobalStyle } from '@shared/styles'
 
 import { store, persistor } from '~/store'
@@ -36,7 +37,9 @@ export default function (props: AppProps) {
 
       <ReduxProvider store={store}>
         <PersistGate persistor={persistor}>
-          <Component {...pageProps} />
+          <ForwardReduxActionFromMain>
+            <Component {...pageProps} />
+          </ForwardReduxActionFromMain>
         </PersistGate>
       </ReduxProvider>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo } from 'react'
 
 import Head from 'next/head'
 
@@ -11,12 +11,21 @@ import {
   StatusBar,
   FolderList
 } from '@shared/components'
-import { FolderItem } from '@shared/components/FolderList/types'
+import { FolderItem, ItemType } from '@shared/components/FolderList/types'
 
+import { useTypedSelector } from '~/store'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
-  const [folders] = useState<FolderItem[]>([])
+  const { sources } = useTypedSelector(state => state.sources)
+
+  const folders = useMemo((): FolderItem[] => {
+    return sources.map(({ name }) => ({
+      type: ItemType.FOLDER,
+      name,
+      icon: 'folder'
+    }))
+  }, [sources])
 
   return (
     <React.Fragment>

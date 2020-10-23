@@ -16,6 +16,7 @@ export function addSourceRequest(source: SourceData): AddSourceRequestAction {
 
 export function addSourceSuccess(source: SourceData): AddSourceSuccessAction {
   return {
+    propagate: true,
     type: Types.ADD_SOURCE_SUCCESS,
     payload: { source }
   }

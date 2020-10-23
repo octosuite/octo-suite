@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { HostType, ConnectionString } from 'connection-string'
 
 import { TextInput, Button } from '@shared/components'
+import { useWatchAction } from '@shared/redux'
 
 import { createPostgreSQLSource } from '~/core/sources/PostgreSQL'
+import { addSourceRequest } from '~/store/modules/sources/actions'
+import { Types } from '~/store/modules/sources/types'
 import { closeCurrentWindow } from '~/utils/close-current-window'
 
 import { defaultData } from './data'
@@ -22,6 +26,8 @@ import { PostgreSQLSourceFormProps } from './types'
 const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
   data = defaultData
 }) => {
+  const dispatch = useDispatch()
+
   const [name, setName] = useState(data.name)
   const [host, setHost] = useState(data.host)
   const [port, setPort] = useState(data.port)
@@ -49,18 +55,22 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
     setTestingConnection(false)
   }, [connectionURL, name])
 
-  const handleSaveConnection = useCallback(async () => {
+  const handleSaveConnection = useCallback(() => {
+    const source = createPostgreSQLSource({ connectionURL, name })
+
+    dispatch(addSourceRequest(source.getData()))
+
     // TODO: const source = createPostgreSQLSource({ connectionURL, name })
 
-    try {
-      // await saveSource(source.getData())
-      closeCurrentWindow()
-    } catch (error) {
-      console.error(error)
+    // try {
+    // await saveSource(source.getData())
+    //   closeCurrentWindow()
+    // } catch (error) {
+    //   console.error(error)
 
-      setHasNameError(true)
-    }
-  }, [connectionURL, name])
+    //   setHasNameError(true)
+    // }
+  }, [dispatch, connectionURL, name])
 
   useEffect(() => {
     const connection = new ConnectionString(connectionURL)
@@ -85,6 +95,8 @@ const PostgreSQLSourceForm: React.VFC<PostgreSQLSourceFormProps> = ({
 
     setConnectionURL(connection.toString())
   }, [host, port, user, pass, database])
+
+  useWatchAction(closeCurrentWindow, [Types.ADD_SOURCE_SUCCESS])
 
   return (
     <Container>
