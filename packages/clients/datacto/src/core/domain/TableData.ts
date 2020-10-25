@@ -1,3 +1,3 @@
-export interface TableData {
+export interface ITableData {
   name: string
 }

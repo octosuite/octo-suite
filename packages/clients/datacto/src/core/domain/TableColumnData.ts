@@ -1,4 +1,4 @@
-export interface TableColumnData {
+export interface ITableColumnData {
   name: string
   type: string
   typeName: string

@@ -1,8 +1,8 @@
 import produce from 'immer'
 
-import { SourcesState, SourcesActionsTypes, Types } from './types'
+import { ISourcesState, SourcesActionsTypes, Types } from './types'
 
-const INITIAL_STATE: SourcesState = {
+const INITIAL_STATE: ISourcesState = {
   sources: []
 }
 

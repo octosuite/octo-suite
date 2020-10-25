@@ -1,10 +1,10 @@
-import { SchemaData } from '~/core/domain/SchemaData'
-import { SourceData } from '~/core/domain/SourceData'
+import { ISchemaData } from '~/core/domain/SchemaData'
+import { ISourceData } from '~/core/domain/SourceData'
 import {
-  PostgreSQLSourceProvider,
+  IPostgreSQLSourceProvider,
   SourceProviderList
 } from '~/core/domain/SourceProvider'
-import { TableData } from '~/core/domain/TableData'
+import { ITableData } from '~/core/domain/TableData'
 import {
   testPostgreSQLConnection,
   getPostgreSQLDatabases,
@@ -15,8 +15,8 @@ import {
 } from '~/core/modules/PostgreSQL/actions'
 
 export function createPostgreSQLSource(
-  data: Omit<SourceData, 'type'>
-): PostgreSQLSourceProvider {
+  data: Omit<ISourceData, 'type'>
+): IPostgreSQLSourceProvider {
   return {
     getData: () => ({ ...data, type: SourceProviderList.POSTGRESQL }),
 
@@ -32,15 +32,15 @@ export function createPostgreSQLSource(
       return getPostgreSQLSchemas(data.connectionURL)
     },
 
-    getTables: async (schema: SchemaData) => {
+    getTables: async (schema: ISchemaData) => {
       return getPostgreSQLTables(data.connectionURL, schema)
     },
 
-    getTablesColumns: async (schema: SchemaData, table: TableData) => {
+    getTablesColumns: async (schema: ISchemaData, table: ITableData) => {
       return getPostgreSQLColumns(data.connectionURL, schema, table)
     },
 
-    getViews: async (schema: SchemaData) => {
+    getViews: async (schema: ISchemaData) => {
       return getPostgreSQLViews(data.connectionURL, schema)
     },
 

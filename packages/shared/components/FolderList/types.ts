@@ -17,6 +17,7 @@ interface BaseItem {
 export interface FolderItem extends BaseItem {
   type: typeof ItemType.FOLDER
   items?: Item[]
+  startsCollapsed?: boolean
 }
 
 export interface FileItem extends BaseItem {

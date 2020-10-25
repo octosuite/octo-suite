@@ -54,7 +54,8 @@ module.exports = {
     'no-use-before-define': 'off',
     'no-prototype-builtins': 'off',
     indent: 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off'
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'no-case-declarations': 'off'
   },
   settings: {
     'import/resolver': {

@@ -1,3 +1,3 @@
-export interface ViewData {
+export interface IViewData {
   name: string
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
 import { File } from '../File'
 import { ItemType, Item } from '../types'
@@ -18,13 +18,14 @@ function folderComparer(item: Item, other: Item): number {
   return 1
 }
 
-const Folder: React.VFC<FolderProps> = ({
+const FolderComponent: React.VFC<FolderProps> = ({
   name,
   icon,
+  startsCollapsed = false,
   items = [],
   level = 0
 }) => {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(!startsCollapsed)
 
   return (
     <Wrapper>
@@ -50,5 +51,7 @@ const Folder: React.VFC<FolderProps> = ({
     </Wrapper>
   )
 }
+
+const Folder = memo(FolderComponent)
 
 export { Folder }

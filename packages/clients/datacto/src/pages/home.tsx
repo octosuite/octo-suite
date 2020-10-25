@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react'
+import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Head from 'next/head'
 
@@ -11,21 +12,22 @@ import {
   StatusBar,
   FolderList
 } from '@shared/components'
-import { FolderItem, ItemType } from '@shared/components/FolderList/types'
 
+import { useFolders } from '~/hooks/use-folders'
 import { useTypedSelector } from '~/store'
+import { loadProviderRequest } from '~/store/modules/providers/actions'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
+  const dispatch = useDispatch()
+
   const { sources } = useTypedSelector(state => state.sources)
 
-  const folders = useMemo((): FolderItem[] => {
-    return sources.map(({ name }) => ({
-      type: ItemType.FOLDER,
-      name,
-      icon: 'folder'
-    }))
-  }, [sources])
+  const folders = useFolders()
+
+  const loadSourcesData = useCallback(() => {
+    sources.forEach(source => dispatch(loadProviderRequest(source)))
+  }, [sources, dispatch])
 
   return (
     <React.Fragment>
@@ -44,7 +46,7 @@ const Home = () => {
               title="Sources"
               actions={[
                 { icon: 'add', onClick: openNewPostgreSQLDataSource },
-                { icon: 'refresh' },
+                { icon: 'refresh', onClick: loadSourcesData },
                 { icon: 'collapse-all' }
               ]}
             >

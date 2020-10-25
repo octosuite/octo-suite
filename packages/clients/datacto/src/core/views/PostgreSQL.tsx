@@ -5,10 +5,10 @@ import { FolderItem, ItemType } from '@shared/components/FolderList'
 
 import { PostgreSQLSourceIcon } from '~/components/SourceIcon/PostgreSQL'
 
-import { PostgreSQLSourceProvider } from '../domain/SourceProvider'
+import { IPostgreSQLSourceProvider } from '../domain/SourceProvider'
 
 export function generatePostgreSQLView(
-  source: PostgreSQLSourceProvider,
+  source: IPostgreSQLSourceProvider,
   onChange: (item: FolderItem) => void
 ) {
   const { name } = source.getData()

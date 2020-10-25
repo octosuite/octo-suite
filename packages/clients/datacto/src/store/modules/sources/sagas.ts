@@ -1,13 +1,14 @@
 import { all, takeLatest, put, select } from 'redux-saga/effects'
 
-import { SourceData } from '~/core/domain/SourceData'
+import { ISourceData } from '~/core/domain/SourceData'
 import { RootState } from '~/store/state'
 
+import { loadProviderRequest } from '../providers/actions'
 import { addSourceFailure, addSourceSuccess } from './actions'
 import { Types, AddSourceRequestAction } from './types'
 
-export function* addSource({ payload }: AddSourceRequestAction) {
-  const sources: SourceData[] = yield select(
+function* addSource({ payload }: AddSourceRequestAction) {
+  const sources: ISourceData[] = yield select(
     (state: RootState) => state.sources.sources
   )
 
@@ -19,7 +20,7 @@ export function* addSource({ payload }: AddSourceRequestAction) {
     yield put(addSourceFailure('Source name already exists'))
   } else {
     yield put(addSourceSuccess(source))
+    yield put(loadProviderRequest(source))
   }
 }
-
 export default all([takeLatest(Types.ADD_SOURCE_REQUEST, addSource)])

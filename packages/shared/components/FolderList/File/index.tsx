@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { Codicon } from '../../Codicon'
 import { Wrapper, Title } from './styles'
 import { FileProps } from './types'
 
-const File: React.VFC<FileProps> = ({ name, icon, level }) => {
+const FileComponent: React.VFC<FileProps> = ({ name, icon, level }) => {
   return (
     <Wrapper level={level}>
       {icon && typeof icon === 'string' ? (
@@ -17,5 +17,7 @@ const File: React.VFC<FileProps> = ({ name, icon, level }) => {
     </Wrapper>
   )
 }
+
+const File = memo(FileComponent)
 
 export { File }

@@ -1,6 +1,6 @@
 import { BaseAction } from '@shared/redux'
 
-import { SourceData } from '~/core/domain/SourceData'
+import { ISourceData } from '~/core/domain/SourceData'
 
 export enum Types {
   ADD_SOURCE_REQUEST = '@sources/ADD_SOURCE_REQUEST',
@@ -11,14 +11,14 @@ export enum Types {
 export interface AddSourceRequestAction extends BaseAction {
   type: typeof Types.ADD_SOURCE_REQUEST
   payload: {
-    source: SourceData
+    source: ISourceData
   }
 }
 
 export interface AddSourceSuccessAction extends BaseAction {
   type: typeof Types.ADD_SOURCE_SUCCESS
   payload: {
-    source: SourceData
+    source: ISourceData
   }
 }
 
@@ -34,6 +34,6 @@ export type SourcesActionsTypes =
   | AddSourceSuccessAction
   | AddSourceFailureAction
 
-export interface SourcesState {
-  sources: SourceData[]
+export interface ISourcesState {
+  sources: ISourceData[]
 }

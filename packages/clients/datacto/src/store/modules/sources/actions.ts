@@ -1,4 +1,4 @@
-import { SourceData } from '~/core/domain/SourceData'
+import { ISourceData } from '~/core/domain/SourceData'
 
 import {
   AddSourceRequestAction,
@@ -7,14 +7,14 @@ import {
   Types
 } from './types'
 
-export function addSourceRequest(source: SourceData): AddSourceRequestAction {
+export function addSourceRequest(source: ISourceData): AddSourceRequestAction {
   return {
     type: Types.ADD_SOURCE_REQUEST,
     payload: { source }
   }
 }
 
-export function addSourceSuccess(source: SourceData): AddSourceSuccessAction {
+export function addSourceSuccess(source: ISourceData): AddSourceSuccessAction {
   return {
     propagate: true,
     type: Types.ADD_SOURCE_SUCCESS,
