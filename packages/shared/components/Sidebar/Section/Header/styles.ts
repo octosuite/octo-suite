@@ -35,6 +35,7 @@ export const Title = styled.strong`
   flex: 1;
   font-size: 11px;
   line-height: 13px;
+  font-weight: 500;
   text-align: left;
   text-transform: uppercase;
 `

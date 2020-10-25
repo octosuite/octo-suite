@@ -1,3 +1,3 @@
-export interface SchemaData {
+export interface ISchemaData {
   name: string
 }

@@ -1,30 +1,30 @@
-import { DatabaseData } from './DatabaseData'
-import { SchemaData } from './SchemaData'
-import { SourceData } from './SourceData'
-import { TableColumnData } from './TableColumnData'
-import { TableData } from './TableData'
-import { ViewData } from './ViewData'
+import { IDatabaseData } from './DatabaseData'
+import { ISchemaData } from './SchemaData'
+import { ISourceData } from './SourceData'
+import { ITableColumnData } from './TableColumnData'
+import { ITableData } from './TableData'
+import { IViewData } from './ViewData'
 
-interface BaseSourceProvider {
-  getData(): SourceData
+interface IBaseSourceProvider {
+  getData(): ISourceData
   testConnection(): Promise<boolean>
-  getDatabases(): Promise<DatabaseData[]>
-  getSchemas(): Promise<SchemaData[]>
-  getTables(schema: SchemaData): Promise<TableData[]>
+  getDatabases(): Promise<IDatabaseData[]>
+  getSchemas(): Promise<ISchemaData[]>
+  getTables(schema: ISchemaData): Promise<ITableData[]>
   getTablesColumns(
-    database: DatabaseData,
-    schema: SchemaData,
-    table: TableData
-  ): Promise<TableColumnData[]>
-  getViews(database: DatabaseData, schema: SchemaData): Promise<ViewData[]>
+    database: IDatabaseData,
+    schema: ISchemaData,
+    table: ITableData
+  ): Promise<ITableColumnData[]>
+  getViews(schema: ISchemaData): Promise<IViewData[]>
 }
 
 export enum SourceProviderList {
   POSTGRESQL = 'SourceProviderList.POSTGRESQL'
 }
 
-export interface PostgreSQLSourceProvider extends BaseSourceProvider {
+export interface IPostgreSQLSourceProvider extends IBaseSourceProvider {
   readonly type: typeof SourceProviderList.POSTGRESQL
 }
 
-export type SourceProvider = PostgreSQLSourceProvider
+export type SourceProvider = IPostgreSQLSourceProvider

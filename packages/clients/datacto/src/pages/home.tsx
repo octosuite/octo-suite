@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Head from 'next/head'
 
@@ -8,16 +9,25 @@ import {
   Content,
   Sidebar,
   TabBar,
-  StatusBar
+  StatusBar,
+  FolderList
 } from '@shared/components'
 
-import { useSources } from '~/hooks/use-sources'
+import { useFolders } from '~/hooks/use-folders'
+import { useTypedSelector } from '~/store'
+import { loadProviderRequest } from '~/store/modules/providers/actions'
 import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
-  const sources = useSources()
+  const dispatch = useDispatch()
 
-  useEffect(() => console.log(sources), [sources])
+  const { sources } = useTypedSelector(state => state.sources)
+
+  const folders = useFolders()
+
+  const loadSourcesData = useCallback(() => {
+    sources.forEach(source => dispatch(loadProviderRequest(source)))
+  }, [sources, dispatch])
 
   return (
     <React.Fragment>
@@ -36,15 +46,12 @@ const Home = () => {
               title="Sources"
               actions={[
                 { icon: 'add', onClick: openNewPostgreSQLDataSource },
-                { icon: 'refresh' },
+                { icon: 'refresh', onClick: loadSourcesData },
                 { icon: 'collapse-all' }
               ]}
-            ></Sidebar.Section>
-
-            <Sidebar.Section
-              title="Queries"
-              actions={[{ icon: 'collapse-all' }]}
-            ></Sidebar.Section>
+            >
+              <FolderList items={folders} />
+            </Sidebar.Section>
           </Sidebar>
 
           <TabBar />

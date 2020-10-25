@@ -1,11 +1,11 @@
 import { ipcMain, IpcMainEvent } from 'electron'
 import { Client } from 'pg'
 
-import { DatabaseData } from '~/core/domain/DatabaseData'
-import { SchemaData } from '~/core/domain/SchemaData'
-import { TableColumnData } from '~/core/domain/TableColumnData'
-import { TableData } from '~/core/domain/TableData'
-import { ViewData } from '~/core/domain/ViewData'
+import { IDatabaseData } from '~/core/domain/DatabaseData'
+import { ISchemaData } from '~/core/domain/SchemaData'
+import { ITableColumnData } from '~/core/domain/TableColumnData'
+import { ITableData } from '~/core/domain/TableData'
+import { IViewData } from '~/core/domain/ViewData'
 
 import { PostgreSQLChannels } from './types'
 
@@ -37,7 +37,7 @@ export function registerGetPostgreSQLDatabases() {
       try {
         await client.connect()
 
-        const databases = await client.query<DatabaseData[]>(`
+        const databases = await client.query<IDatabaseData[]>(`
           SELECT datname AS name
           FROM pg_database
           WHERE datistemplate = FALSE
@@ -68,9 +68,10 @@ export function registerGetPostgreSQLSchemas() {
       try {
         await client.connect()
 
-        const schemas = await client.query<SchemaData[]>(`
+        const schemas = await client.query<ISchemaData[]>(`
           SELECT schema_name AS name
           FROM information_schema.schemata
+          WHERE schema_name NOT IN ('pg_toast')
           ORDER BY schema_name
         `)
 
@@ -97,7 +98,7 @@ export function registerGetPostgreSQLSchemaTables() {
       try {
         await client.connect()
 
-        const tables = await client.query<TableData[]>(`
+        const tables = await client.query<ITableData[]>(`
           SELECT table_name as name
           FROM information_schema.tables
           WHERE table_type NOT LIKE '%VIEW%'
@@ -132,7 +133,7 @@ export function registerGetPostgreSQLTableColumns() {
       try {
         await client.connect()
 
-        const columns = await client.query<TableColumnData[]>(`
+        const columns = await client.query<ITableColumnData[]>(`
           SELECT column_name              AS name,
                  data_type                AS type,
                  udt_name                 AS typeName,
@@ -169,7 +170,7 @@ export function registerGetPostgreSQLViews() {
       try {
         await client.connect()
 
-        const views = await client.query<ViewData[]>(`
+        const views = await client.query<IViewData[]>(`
           SELECT table_name as name
           FROM information_schema.views
           WHERE table_schema = '${schemaName}'

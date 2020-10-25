@@ -1,6 +1,6 @@
 import { SourceProviderList } from './SourceProvider'
 
-export interface SourceData {
+export interface ISourceData {
   name: string
   connectionURL: string
   type: SourceProviderList

@@ -1,10 +1,10 @@
 import { ipcRenderer, IpcRendererEvent } from 'electron'
 
-import { DatabaseData } from '~/core/domain/DatabaseData'
-import { SchemaData } from '~/core/domain/SchemaData'
-import { TableColumnData } from '~/core/domain/TableColumnData'
-import { TableData } from '~/core/domain/TableData'
-import { ViewData } from '~/core/domain/ViewData'
+import { IDatabaseData } from '~/core/domain/DatabaseData'
+import { ISchemaData } from '~/core/domain/SchemaData'
+import { ITableColumnData } from '~/core/domain/TableColumnData'
+import { ITableData } from '~/core/domain/TableData'
+import { IViewData } from '~/core/domain/ViewData'
 
 import { PostgreSQLChannels } from './types'
 
@@ -26,11 +26,11 @@ export async function testPostgreSQLConnection(
 
 export async function getPostgreSQLDatabases(
   connectionString: string
-): Promise<DatabaseData[]> {
+): Promise<IDatabaseData[]> {
   return new Promise(resolve => {
     ipcRenderer.once(
       PostgreSQLChannels.getDatabases.response,
-      (_: IpcRendererEvent, databases: DatabaseData[]) => {
+      (_: IpcRendererEvent, databases: IDatabaseData[]) => {
         resolve(databases)
       }
     )
@@ -41,11 +41,11 @@ export async function getPostgreSQLDatabases(
 
 export async function getPostgreSQLSchemas(
   connectionString: string
-): Promise<DatabaseData[]> {
+): Promise<IDatabaseData[]> {
   return new Promise(resolve => {
     ipcRenderer.once(
       PostgreSQLChannels.getSchemas.response,
-      (_: IpcRendererEvent, databases: SchemaData[]) => {
+      (_: IpcRendererEvent, databases: ISchemaData[]) => {
         resolve(databases)
       }
     )
@@ -56,12 +56,12 @@ export async function getPostgreSQLSchemas(
 
 export async function getPostgreSQLTables(
   connectionString: string,
-  schema: SchemaData
-): Promise<TableData[]> {
+  schema: ISchemaData
+): Promise<ITableData[]> {
   return new Promise(resolve => {
     ipcRenderer.once(
       PostgreSQLChannels.getSchemaTables.response,
-      (_: IpcRendererEvent, tables: TableData[]) => {
+      (_: IpcRendererEvent, tables: ITableData[]) => {
         resolve(tables)
       }
     )
@@ -76,13 +76,13 @@ export async function getPostgreSQLTables(
 
 export async function getPostgreSQLColumns(
   connectionString: string,
-  schema: SchemaData,
-  table: TableData
-): Promise<TableColumnData[]> {
+  schema: ISchemaData,
+  table: ITableData
+): Promise<ITableColumnData[]> {
   return new Promise(resolve => {
     ipcRenderer.once(
       PostgreSQLChannels.getTableColumns.response,
-      (_: IpcRendererEvent, tables: TableColumnData[]) => {
+      (_: IpcRendererEvent, tables: ITableColumnData[]) => {
         resolve(tables)
       }
     )
@@ -98,12 +98,12 @@ export async function getPostgreSQLColumns(
 
 export async function getPostgreSQLViews(
   connectionString: string,
-  schema: SchemaData
-): Promise<ViewData[]> {
+  schema: ISchemaData
+): Promise<IViewData[]> {
   return new Promise(resolve => {
     ipcRenderer.once(
       PostgreSQLChannels.getViews.response,
-      (_: IpcRendererEvent, tables: ViewData[]) => {
+      (_: IpcRendererEvent, tables: IViewData[]) => {
         resolve(tables)
       }
     )

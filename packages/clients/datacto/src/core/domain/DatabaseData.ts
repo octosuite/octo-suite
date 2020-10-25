@@ -1,3 +1,3 @@
-export interface DatabaseData {
+export interface IDatabaseData {
   name: string
 }

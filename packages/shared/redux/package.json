@@ -1,0 +1,16 @@
+{
+  "name": "@shared/redux",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^10.1.1",
+    "react": "^16.13.1",
+    "react-redux": "^7.2.1"
+  },
+  "devDependencies": {
+    "@shared/eslint-config-react": "1.0.0",
+    "typescript": "^4.0.3"
+  }
+}
