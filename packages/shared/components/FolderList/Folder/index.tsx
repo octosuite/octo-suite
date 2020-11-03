@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 
 import { File } from '../File'
 import { ItemType, Item } from '../types'
@@ -26,6 +26,13 @@ const FolderComponent: React.VFC<FolderProps> = ({
   level = 0
 }) => {
   const [expanded, setExpanded] = useState(!startsCollapsed)
+  const [alreadyExpanded, setAlreadyExpanded] = useState(false)
+
+  useEffect(() => {
+    if (expanded) {
+      setAlreadyExpanded(true)
+    }
+  }, [expanded])
 
   return (
     <Wrapper>
@@ -37,17 +44,20 @@ const FolderComponent: React.VFC<FolderProps> = ({
         onClick={() => setExpanded(old => !old)}
       />
 
-      <Container hidden={!expanded}>
-        {items
-          .sort(folderComparer)
-          .map(item =>
-            item.type === ItemType.FOLDER ? (
-              <Folder key={item.name} {...item} level={level + 1} />
-            ) : (
-              <File key={item.name} {...item} level={level + 1} />
-            )
-          )}
-      </Container>
+      {alreadyExpanded && (
+        <Container hidden={!expanded}>
+          {items
+            .sort(folderComparer)
+            .map(item =>
+              item.type === ItemType.FOLDER ? (
+                <Folder key={item.name} {...item} level={level + 1} />
+              ) : (
+                <File key={item.name} {...item} level={level + 1} />
+              )
+            )}
+        </Container>
+      )}
+      
     </Wrapper>
   )
 }

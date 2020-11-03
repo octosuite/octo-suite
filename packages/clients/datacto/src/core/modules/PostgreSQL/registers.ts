@@ -71,7 +71,7 @@ export function registerGetPostgreSQLSchemas() {
         const schemas = await client.query<ISchemaData[]>(`
           SELECT schema_name AS name
           FROM information_schema.schemata
-          WHERE schema_name NOT IN ('pg_toast')
+          WHERE schema_name NOT LIKE '%pg_toast%' AND schema_name NOT LIKE '%pg%_temp_%'
           ORDER BY schema_name
         `)
 
