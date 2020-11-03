@@ -9,6 +9,7 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
     const { x, y } = getCenterOfWindow(parent)
 
     const window = new BrowserWindow({
+      title: 'Octo DataView',
       x: x - 200,
       y: y - 240,
       width: 400,
@@ -28,7 +29,6 @@ export function registerOpenNewPostgreSQLDataSource(parent: BrowserWindow) {
     })
 
     window.removeMenu()
-    // window.webContents.openDevTools()
 
     window.loadURL(resolvePath('sources/create/postgresql'))
   })

@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Datacto - Home</title>
+        <title>Octo DataView - Home</title>
       </Head>
 
       <Layout>

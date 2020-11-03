@@ -26,7 +26,7 @@ export async function registerWindows() {
   await app.whenReady()
 
   const mainWindow = new BrowserWindow({
-    title: 'Datacto',
+    title: 'Octo DataView',
     width: 1000,
     height: 600,
     backgroundColor: '#1c1e1f',
@@ -37,7 +37,6 @@ export async function registerWindows() {
   })
 
   mainWindow.removeMenu()
-  mainWindow.webContents.openDevTools()
 
   mainWindow.loadURL(resolvePath('home'))
 

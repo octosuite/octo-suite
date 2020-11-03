@@ -1,5 +1,5 @@
-appId: io.octosuite.datacto
-productName: Datacto
+appId: io.octosuite.data-view
+productName: Octo DataView
 copyright: Copyright © 2020 Octo Suite
 electronVersion: 10.1.1
 directories:

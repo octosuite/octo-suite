@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@octosuite/datacto",
+  "name": "@octo/data-view",
   "description": "Application to view and manage databases",
   "version": "1.0.0",
   "author": "Arthur Santos <silva.arthur@academico.ifpb.edu.br>",

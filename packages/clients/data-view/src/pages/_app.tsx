@@ -32,7 +32,7 @@ export default function (props: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <title>Datacto</title>
+        <title>Octo DataView</title>
       </Head>
 
       <ReduxProvider store={store}>
