@@ -45,13 +45,11 @@ export function registerGetPostgreSQLDatabases() {
         `)
 
         event.sender.send(
-          PostgreSQLChannels.getDatabases.response,
+          PostgreSQLChannels.getDatabases.success,
           databases.rows
         )
       } catch (error) {
-        console.error(error)
-
-        event.sender.send(PostgreSQLChannels.getDatabases.response, [])
+        event.sender.send(PostgreSQLChannels.getDatabases.reject, error)
       } finally {
         await client.end()
       }
@@ -75,9 +73,9 @@ export function registerGetPostgreSQLSchemas() {
           ORDER BY schema_name
         `)
 
-        event.sender.send(PostgreSQLChannels.getSchemas.response, schemas.rows)
+        event.sender.send(PostgreSQLChannels.getSchemas.success, schemas.rows)
       } catch (error) {
-        event.sender.send(PostgreSQLChannels.getSchemas.response, [])
+        event.sender.send(PostgreSQLChannels.getSchemas.reject, error)
       } finally {
         await client.end()
       }
@@ -107,11 +105,11 @@ export function registerGetPostgreSQLSchemaTables() {
         `)
 
         event.sender.send(
-          PostgreSQLChannels.getSchemaTables.response,
+          PostgreSQLChannels.getSchemaTables.success,
           tables.rows
         )
       } catch (error) {
-        event.sender.send(PostgreSQLChannels.getSchemaTables.response, [])
+        event.sender.send(PostgreSQLChannels.getSchemaTables.reject, error)
       } finally {
         await client.end()
       }
@@ -145,11 +143,11 @@ export function registerGetPostgreSQLTableColumns() {
         `)
 
         event.sender.send(
-          PostgreSQLChannels.getTableColumns.response,
+          PostgreSQLChannels.getTableColumns.success,
           columns.rows
         )
       } catch (error) {
-        event.sender.send(PostgreSQLChannels.getTableColumns.response, [])
+        event.sender.send(PostgreSQLChannels.getTableColumns.reject, error)
       } finally {
         await client.end()
       }
@@ -177,9 +175,9 @@ export function registerGetPostgreSQLViews() {
           ORDER BY table_schema, table_name
         `)
 
-        event.sender.send(PostgreSQLChannels.getViews.response, views.rows)
+        event.sender.send(PostgreSQLChannels.getViews.success, views.rows)
       } catch (error) {
-        event.sender.send(PostgreSQLChannels.getViews.response, [])
+        event.sender.send(PostgreSQLChannels.getViews.reject, error)
       } finally {
         await client.end()
       }
