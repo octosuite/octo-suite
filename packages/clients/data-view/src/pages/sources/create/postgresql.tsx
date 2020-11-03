@@ -8,7 +8,7 @@ const PorgreSQLSourceCreator: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
-        <title>Datacto - New Data Source (PostgreSQL)</title>
+        <title>Octo DataView - New Data Source (PostgreSQL)</title>
       </Head>
 
       <PostgreSQLSourceForm />

@@ -5,7 +5,7 @@ export default (reducers: any) => {
   const persistedReducer = persistReducer(
     {
       storage,
-      key: 'datacto',
+      key: 'data-view',
       whitelist: ['sources']
     },
     reducers
