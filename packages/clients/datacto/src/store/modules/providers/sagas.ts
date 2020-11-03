@@ -1,11 +1,22 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects'
+import {
+  all,
+  call,
+  put,
+  select,
+  takeEvery,
+  takeLatest
+} from 'redux-saga/effects'
 
 import { ISchemaData } from '~/core/domain/SchemaData'
+import { ISourceData } from '~/core/domain/SourceData'
 import { ITableData } from '~/core/domain/TableData'
 import { IViewData } from '~/core/domain/ViewData'
 import { createPostgreSQLSource } from '~/core/sources/PostgreSQL'
+import { Types as PersistTypes } from '~/store/modules/persist/types'
+import { RootState } from '~/store/state'
 
 import {
+  loadProviderRequest,
   loadProviderSuccess,
   loadProviderFailure,
   loadProviderSchemasSuccess,
@@ -75,4 +86,19 @@ function* loadSource({ payload }: LoadProviderRequestAction) {
   }
 }
 
-export default all([takeEvery(Types.LOAD_SOURCE_REQUEST, loadSource)])
+function* loadAllSources() {
+  const sources: ISourceData[] = yield select(
+    (state: RootState) => state.sources.sources
+  )
+
+  for (let i = 0; i < sources.length; i++) {
+    const source = sources[i]
+
+    yield put(loadProviderRequest(source))
+  }
+}
+
+export default all([
+  takeEvery(Types.LOAD_SOURCE_REQUEST, loadSource),
+  takeLatest(PersistTypes.REHYDRATE, loadAllSources)
+])
