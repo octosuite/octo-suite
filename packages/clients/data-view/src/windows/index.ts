@@ -37,6 +37,7 @@ export async function registerWindows() {
   })
 
   mainWindow.removeMenu()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.loadURL(resolvePath('home'))
 

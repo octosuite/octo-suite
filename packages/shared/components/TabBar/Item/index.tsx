@@ -1,13 +1,20 @@
 import React from 'react'
-import { MdFolder } from 'react-icons/md'
+
+import { Codicon } from '@shared/components'
 
 import { Container, Label } from './styles'
+import { TabBarItemProps } from './types'
 
-const TabBarItem: React.FC = () => {
+const TabBarItem: React.VFC<TabBarItemProps> = ({ icon, label }) => {
   return (
     <Container>
-      <MdFolder color="#999" />
-      <Label>test</Label>
+      {icon && typeof icon === 'string' ? (
+        <Codicon name={icon} size={16} />
+      ) : (
+        icon
+      )}
+
+      <Label>{label}</Label>
     </Container>
   )
 }
