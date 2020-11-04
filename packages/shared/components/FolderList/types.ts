@@ -2,6 +2,15 @@ import { ReactNode } from 'react'
 
 export interface FolderListProps {
   items?: FolderItem[]
+  onItemClick?: (item: FileItem) => void
+}
+
+export interface FolderListContextProps {
+  onItemClick?: (item: FileItem) => void
+}
+
+export interface FolderListContextHandlesProps {
+  onItemClick?: (item: FileItem) => void
 }
 
 export enum ItemType {
