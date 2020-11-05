@@ -2,10 +2,14 @@ import ScrollBar from 'react-perfect-scrollbar'
 
 import styled from 'styled-components'
 
-export const Wrapper = styled(ScrollBar)`
+interface WrapperProps {
+  hasItems?: boolean
+}
+
+export const Wrapper = styled(ScrollBar)<WrapperProps>`
   grid-area: TVH;
 
-  display: flex;
+  display: ${props => (props.hasItems ? 'flex' : 'none')};
   flex-direction: row;
 
   background: #252526;

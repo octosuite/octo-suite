@@ -8,7 +8,10 @@ const TabViewHeader: React.VFC = () => {
   const tabs = useTabViewItems()
 
   return (
-    <Wrapper options={{ useBothWheelAxes: true, wheelSpeed: 0.5 }}>
+    <Wrapper
+      options={{ useBothWheelAxes: true, wheelSpeed: 0.5 }}
+      hasItems={tabs.length !== 0}
+    >
       {tabs.map(({ id, header }) => (
         <TabViewHeaderItem key={id} id={id} data={header} />
       ))}
