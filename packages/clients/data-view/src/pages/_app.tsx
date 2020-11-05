@@ -11,7 +11,8 @@ import { GlobalStyle } from '@shared/styles'
 import { store, persistor } from '~/store'
 
 import '@shared/components/Codicon/styles.css'
-import 'react-perfect-scrollbar/dist/css/styles.css'
+import '../public/styles/scrollbar.css'
+// import 'react-perfect-scrollbar/dist/css/styles.css'
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props
