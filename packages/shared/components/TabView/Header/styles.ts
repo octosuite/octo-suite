@@ -1,7 +1,9 @@
+import ScrollBar from 'react-perfect-scrollbar'
+
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  grid-area: TBBR;
+export const Wrapper = styled(ScrollBar)`
+  grid-area: TVH;
 
   display: flex;
   flex-direction: row;

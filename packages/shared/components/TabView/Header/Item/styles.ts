@@ -9,12 +9,11 @@ export const Container = styled.button`
   border: none;
   padding: 0 12px;
   text-align: left;
-  width: 128px;
 
   i,
   svg {
-    color: #666;
-    fill: #666;
+    color: #7494a3;
+    fill: #7494a3;
     margin-right: 4px;
     height: 16px;
     width: 16px;
@@ -28,6 +27,6 @@ export const Label = styled.span`
   opacity: 0.5;
 
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
 `
