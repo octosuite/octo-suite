@@ -27,6 +27,21 @@ const TabViewComponent: React.ForwardRefRenderFunction<
 
   const getFocusedItem = useCallback(() => activeItem, [activeItem])
 
+  const removeItem = useCallback((item: TabViewItemData) => {
+    setItems(currentItems => {
+      const index = currentItems.findIndex(
+        currentItem => currentItem.id === item.id
+      )
+
+      // TODO: call focusItem function
+      setActiveItem(currentActiveItem =>
+        currentActiveItem.id === item.id ? undefined : currentActiveItem
+      )
+
+      return currentItems.filter((_, i) => i !== index)
+    })
+  }, [])
+
   const addItem = useCallback(
     (item: TabViewItemData) => {
       setItems(currentItems => [...currentItems, item])
@@ -47,10 +62,10 @@ const TabViewComponent: React.ForwardRefRenderFunction<
   )
 
   return (
-    <TabViewContext.Provider value={{ items, activeItem, setActiveItem }}>
-      <Wrapper>
-        <TabViewHeader />
-      </Wrapper>
+    <TabViewContext.Provider
+      value={{ items, activeItem, setActiveItem, removeItem }}
+    >
+      <Wrapper>{items.length !== 0 && <TabViewHeader />}</Wrapper>
     </TabViewContext.Provider>
   )
 }

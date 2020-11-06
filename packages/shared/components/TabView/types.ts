@@ -23,4 +23,5 @@ export interface TabViewContextHandles {
   items: TabViewItemData[]
   activeItem: TabViewItemData | undefined
   setActiveItem(item: TabViewItemData): void
+  removeItem(item: TabViewItemData): void
 }

@@ -10,16 +10,18 @@ export function useTabViewItems() {
   return items
 }
 
-export function useActiveItem(id: string): [boolean, () => void] {
-  const { activeItem, setActiveItem, items } = useContext(TabViewContext)
+export function useActiveItem(id: string): [boolean, () => void, () => void] {
+  const { activeItem, setActiveItem, removeItem, items } = useContext(
+    TabViewContext
+  )
 
   return useMemo(() => {
+    const item = items.find(currentItem => currentItem.id === id)
+
     return [
       id === activeItem?.id,
-      () => {
-        const item = items.find(currentItem => currentItem.id === id)
-        setActiveItem(item)
-      }
+      () => setActiveItem(item),
+      () => removeItem(item)
     ]
   }, [id, items, activeItem, setActiveItem])
 }
