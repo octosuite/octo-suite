@@ -1,20 +1,20 @@
 import styled, { css } from 'styled-components'
 
+import { ACTIVITY_BAR_WIDTH } from '../ActivityBar'
 import { STATUS_BAR_HEIGHT } from '../StatusBar'
 import { ContentProps } from './types'
 
 /*
   SDBR -> Sidebar
-  TBBR -> TabBar
+  TBVW -> TabView
 */
 
 const WithSidebarStyle = css`
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 35px calc(100vh - 35px - ${STATUS_BAR_HEIGHT}px);
-  grid-template-areas:
-    'SDBR TBBR'
-    'SDBR .';
+  grid-template-rows: calc(100vh - ${STATUS_BAR_HEIGHT}px);
+  grid-template-areas: 'SDBR TBVW';
+  max-width: calc(100vw - ${ACTIVITY_BAR_WIDTH}px);
 `
 
 const WithoutSidebarStyle = css``

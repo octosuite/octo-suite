@@ -8,10 +8,10 @@ import {
   Layout,
   Content,
   Sidebar,
-  TabBar,
+  TabView,
+  TabViewHandles,
   StatusBar,
   FolderList,
-  TabBarHandles,
   FileItem
 } from '@shared/components'
 
@@ -22,7 +22,7 @@ import { openNewPostgreSQLDataSource } from '~/windows/PostgreSQL/actions'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const tabRef = useRef<TabBarHandles>(null)
+  const tabRef = useRef<TabViewHandles>(null)
 
   const { sources } = useTypedSelector(state => state.sources)
 
@@ -34,12 +34,31 @@ const Home = () => {
 
   const handleItemClick = useCallback(
     (fileItem: FileItem) => {
-      console.log({ fileItem })
+      if (!tabRef.current) return
 
-      tabRef.current?.addTab({
-        icon: fileItem.icon || 'file',
-        label: fileItem.name
-      })
+      const items = tabRef.current.getItems()
+
+      const itemIndex = items.findIndex(({ id }) => id === fileItem.name)
+
+      if (itemIndex === -1) {
+        tabRef.current.addItem({
+          id: fileItem.name,
+          header: {
+            icon: 'activate-breakpoints',
+            label: fileItem.name
+          },
+          options: fileItem.name.startsWith('_')
+            ? [
+                { icon: 'git-compare', disabled: true },
+                { icon: 'split-horizontal' },
+                { icon: 'ellipsis' }
+              ]
+            : [],
+          render: () => <h1>{fileItem.name}</h1>
+        })
+      } else {
+        tabRef.current.focusItem(items[itemIndex])
+      }
     },
     [tabRef]
   )
@@ -69,7 +88,7 @@ const Home = () => {
             </Sidebar.Section>
           </Sidebar>
 
-          <TabBar ref={tabRef} />
+          <TabView ref={tabRef} onTabChange={console.log} />
         </Content>
 
         <StatusBar />
