@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
 
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 35px calc(100vh - 35px - ${STATUS_BAR_HEIGHT}px);
+  grid-template-rows: 36px calc(100vh - 36px - ${STATUS_BAR_HEIGHT}px);
   grid-template-areas:
     'TVH'
-    '.';
+    'PGR';
 `

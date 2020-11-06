@@ -1,10 +1,12 @@
 import { ReactNode } from 'react'
 
+import { TabViewHeaderActionItemProps } from './Header/Actions/Item/types'
 import { TabViewHeaderItemData } from './Header/Item/types'
 
 export interface TabViewItemData {
   id: string
   header: TabViewHeaderItemData
+  options?: TabViewHeaderActionItemProps[]
   render(): ReactNode
 }
 

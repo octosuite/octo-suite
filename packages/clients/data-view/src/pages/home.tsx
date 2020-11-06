@@ -47,6 +47,13 @@ const Home = () => {
             icon: 'activate-breakpoints',
             label: fileItem.name
           },
+          options: fileItem.name.startsWith('_')
+            ? [
+                { icon: 'git-compare', disabled: true },
+                { icon: 'split-horizontal' },
+                { icon: 'ellipsis' }
+              ]
+            : [],
           render: () => <h1>{fileItem.name}</h1>
         })
       } else {
