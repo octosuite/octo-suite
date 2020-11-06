@@ -20,6 +20,7 @@ const TabViewComponent: React.ForwardRefRenderFunction<
 
   const focusItem = useCallback((item: TabViewItemData) => {
     // TODO: scroll to item when focused
+    // TODO: when item is null, focus a current item inside items array
     setActiveItem(item)
   }, [])
 
@@ -30,13 +31,9 @@ const TabViewComponent: React.ForwardRefRenderFunction<
   const removeItem = useCallback(
     (item: TabViewItemData) => {
       setItems(currentItems => {
-        const index = currentItems.findIndex(
-          currentItem => currentItem.id === item.id
-        )
-
         focusItem(item.id === activeItem.id ? undefined : activeItem)
 
-        return currentItems.filter((_, i) => i !== index)
+        return currentItems.filter(({ id }) => id !== item.id)
       })
     },
     [activeItem, focusItem]
