@@ -30,8 +30,16 @@ export const Container = styled.button`
     }
   }
 
+  span {
+    opacity: 0.5;
+  }
+
   &.active {
     background-color: #1c1e1f;
+
+    span {
+      opacity: 1;
+    }
   }
 `
 

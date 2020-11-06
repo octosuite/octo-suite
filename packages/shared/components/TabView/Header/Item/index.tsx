@@ -11,7 +11,11 @@ const TabViewHeaderItem: React.VFC<TabViewHeaderItemProps> = ({ id, data }) => {
   const [isActive, focusThis, closeThis] = useActiveItem(id)
 
   return (
-    <Container onClick={focusThis} className={isActive ? 'active' : ''}>
+    <Container
+      onClick={focusThis}
+      className={isActive ? 'active' : ''}
+      onAuxClick={closeThis}
+    >
       {icon && typeof icon === 'string' ? (
         <Codicon name={icon} size={16} />
       ) : (
