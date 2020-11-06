@@ -29,6 +29,10 @@ export const Container = styled.button`
       visibility: visible;
     }
   }
+
+  &.active {
+    background-color: #1c1e1f;
+  }
 `
 
 export const CloseButton = styled.div.attrs({
