@@ -6,6 +6,7 @@ import React, {
   useState
 } from 'react'
 
+import { Pager } from '../Pager'
 import { TabViewContext } from './context'
 import { TabViewHeader } from './Header'
 import { Wrapper } from './styles'
@@ -69,7 +70,17 @@ const TabViewComponent: React.ForwardRefRenderFunction<
     <TabViewContext.Provider
       value={{ items, activeItem, setActiveItem, removeItem }}
     >
-      <Wrapper>{items.length !== 0 && <TabViewHeader />}</Wrapper>
+      <Wrapper>
+        {items.length !== 0 && <TabViewHeader />}
+
+        <Pager currentPage={activeItem?.id}>
+          {items.map(({ id, render }) => (
+            <Pager.Page key={id} name={id}>
+              {render()}
+            </Pager.Page>
+          ))}
+        </Pager>
+      </Wrapper>
     </TabViewContext.Provider>
   )
 }

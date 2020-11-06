@@ -47,7 +47,7 @@ const Home = () => {
             icon: 'activate-breakpoints',
             label: fileItem.name
           },
-          render: () => <div />
+          render: () => <h1>{fileItem.name}</h1>
         })
       } else {
         tabRef.current.focusItem(items[itemIndex])

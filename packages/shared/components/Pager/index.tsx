@@ -1,9 +1,21 @@
 import React from 'react'
 
-// import { Container } from './styles';
+import { PagerContextProvider } from './context'
+import { Page } from './Page'
+import { Container } from './styles'
+import { PagerProps } from './types'
 
-const Pager: React.FC = () => {
-  return <div />
+const Pager: React.VFC<PagerProps> & {
+  Page: typeof Page
+} = ({ children, currentPage }) => {
+  return (
+    <PagerContextProvider currentPage={currentPage}>
+      <Container>{children}</Container>
+    </PagerContextProvider>
+  )
 }
 
-export default Pager
+Pager.Page = Page
+
+export * from './types'
+export { Pager }
